@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Resgatados - Grupo de Jovens</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -128,33 +128,37 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom right, #0b1120, #1e2a38);
       color: #e8f0f5;
-      overflow-x: hidden;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
       position: relative;
     }
 
     .overlay {
       background-color: rgba(12, 20, 33, 0.9);
-      padding: 30px;
-      border-radius: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      width: calc(100% - 20px);
       max-width: 700px;
-      width: 100%;
+      margin: 10px;
       text-align: center;
       z-index: 2;
       border: 2px solid #4a6179;
       box-shadow: 0 0 25px rgba(72, 138, 172, 0.4);
       backdrop-filter: blur(5px);
-      margin-bottom: 30px;
-      display: none; /* Initially hidden */
+      margin-bottom: 20px;
+      display: none;
     }
 
     .overlay-content {
@@ -171,7 +175,7 @@
     }
 
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.2rem;
       color: #90caf9;
       margin-bottom: 10px;
       font-family: 'Pacifico', cursive;
@@ -179,13 +183,13 @@
     }
 
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       color: #cfd8dc;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     p {
-      font-size: 1rem;
+      font-size: 0.95rem;
       line-height: 1.6;
       margin-bottom: 15px;
       color: #dce3e9;
@@ -229,7 +233,7 @@
       background-color: rgba(72, 138, 172, 0.2);
       padding: 15px;
       border-radius: 10px;
-      margin: 20px 0;
+      margin: 15px 0;
       border-left: 4px solid #90caf9;
     }
 
@@ -238,7 +242,7 @@
     }
 
     .stars {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -255,13 +259,14 @@
     }
 
     footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
+      margin-top: 20px;
+      font-size: 0.85rem;
       color: #90a4ae;
       text-align: center;
       z-index: 2;
-      padding: 20px;
-      display: none; /* Initially hidden */
+      padding: 15px;
+      display: none;
+      width: 100%;
     }
 
     .social-links {
@@ -281,17 +286,17 @@
     }
 
     .swiper {
-      width: 100%;
+      width: calc(100% - 20px);
       max-width: 600px;
-      margin: 40px auto 0;
+      margin: 20px auto;
       z-index: 2;
-      display: none; /* Initially hidden */
+      display: none;
     }
 
     .swiper-slide {
       background: rgba(28, 42, 58, 0.8);
       border-radius: 10px;
-      padding: 20px;
+      padding: 15px;
       text-align: center;
       box-shadow: 0 0 15px rgba(33, 150, 243, 0.2);
       backdrop-filter: blur(5px);
@@ -299,16 +304,16 @@
     }
 
     .swiper-slide span {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       color: #90caf9;
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .swiper-slide h2 {
-      margin-top: 10px;
-      font-size: 1.1rem;
+      margin-top: 8px;
+      font-size: 1rem;
       color: #e0f7fa;
     }
 
@@ -325,6 +330,7 @@
       justify-content: center;
       align-items: center;
       animation: fadeIn 0.3s;
+      padding: 10px;
     }
 
     @keyframes fadeIn {
@@ -334,10 +340,10 @@
 
     .modal-content {
       background: linear-gradient(135deg, #1e2a38, #0b1120);
-      padding: 30px;
+      padding: 20px;
       border-radius: 15px;
+      width: calc(100% - 20px);
       max-width: 500px;
-      width: 90%;
       text-align: center;
       box-shadow: 0 0 30px rgba(33, 150, 243, 0.5);
       border: 2px solid #4a6179;
@@ -351,9 +357,9 @@
     }
 
     .modal-icon {
-      font-size: 4rem;
+      font-size: 3rem;
       color: #4caf50;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       animation: pulse 1.5s infinite;
     }
 
@@ -366,27 +372,27 @@
     .modal h2 {
       color: #90caf9;
       margin-bottom: 15px;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
 
     .modal p {
-      margin-bottom: 25px;
-      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-size: 1rem;
       line-height: 1.6;
     }
 
     .modal-info {
       background-color: rgba(72, 138, 172, 0.2);
-      padding: 15px;
+      padding: 12px;
       border-radius: 10px;
-      margin: 20px 0;
+      margin: 15px 0;
       border-left: 4px solid #90caf9;
       text-align: left;
     }
 
     .modal-info p {
       margin-bottom: 5px;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     .modal-button {
@@ -401,6 +407,8 @@
       transition: all 0.3s;
       margin-top: 15px;
       box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+      width: 100%;
+      max-width: 200px;
     }
 
     .modal-button:hover {
@@ -410,8 +418,8 @@
 
     .close-modal {
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 10px;
+      right: 10px;
       color: #90a4ae;
       font-size: 1.5rem;
       cursor: pointer;
@@ -420,63 +428,6 @@
 
     .close-modal:hover {
       color: #2196f3;
-    }
-
-    @media (max-width: 600px) {
-      .overlay {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.1rem;
-      }
-
-      p {
-        font-size: 0.95rem;
-      }
-
-      button {
-        width: 100%;
-        font-size: 1rem;
-        padding: 12px;
-      }
-      
-      .loader span {
-        width: 200px;
-        height: 200px;
-      }
-      
-      .rocket {
-        inset: 40px;
-      }
-      
-      .rocket .fa-rocket {
-        font-size: 2.8em;
-      }
-      
-      .rocket .fa-cloud {
-        font-size: 1.6em;
-      }
-      
-      .modal-content {
-        padding: 20px;
-      }
-      
-      .modal-icon {
-        font-size: 3rem;
-      }
-      
-      .modal h2 {
-        font-size: 1.5rem;
-      }
-      
-      .modal p {
-        font-size: 1rem;
-      }
     }
 
     /* Animation for the rocket icon */
@@ -493,6 +444,50 @@
     @keyframes fly {
       0%, 100% { transform: translateY(0) rotate(-45deg); }
       50% { transform: translateY(-10px) rotate(-45deg); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      h2 {
+        font-size: 1rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+      
+      .event-info {
+        padding: 10px;
+      }
+      
+      .modal h2 {
+        font-size: 1.3rem;
+      }
+      
+      .modal p {
+        font-size: 0.9rem;
+      }
+      
+      .modal-content {
+        padding: 15px;
+      }
+      
+      .loader span {
+        width: 180px;
+        height: 180px;
+      }
+      
+      .rocket {
+        inset: 35px;
+      }
+      
+      .rocket .fa-rocket {
+        font-size: 2.5em;
+      }
     }
   </style>
 </head>
