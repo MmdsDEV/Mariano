@@ -2,16 +2,11 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resgatados - Grupo de Jovens</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-  
-  <link rel="icon" href="https://github.com/MmdsDEV/convite2/blob/main/mj.png?raw=true" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" href="https://github.com/MmdsDEV/convite2/blob/main/mj.png?raw=true" as="image">
   <style>
     /* Rocket Loader Styles */
     .loader-container {
@@ -128,37 +123,33 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      width: 100%;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom right, #0b1120, #1e2a38);
       color: #e8f0f5;
+      overflow-x: hidden;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 20px;
       position: relative;
     }
 
     .overlay {
       background-color: rgba(12, 20, 33, 0.9);
-      padding: 20px;
-      border-radius: 15px;
-      width: calc(100% - 20px);
+      padding: 30px;
+      border-radius: 20px;
       max-width: 700px;
-      margin: 10px;
+      width: 100%;
       text-align: center;
       z-index: 2;
       border: 2px solid #4a6179;
       box-shadow: 0 0 25px rgba(72, 138, 172, 0.4);
       backdrop-filter: blur(5px);
-      margin-bottom: 20px;
-      display: none;
+      margin-bottom: 30px;
+      display: none; /* Initially hidden */
     }
 
     .overlay-content {
@@ -175,7 +166,7 @@
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       color: #90caf9;
       margin-bottom: 10px;
       font-family: 'Pacifico', cursive;
@@ -183,13 +174,13 @@
     }
 
     h2 {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: #cfd8dc;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 15px;
       color: #dce3e9;
@@ -233,7 +224,7 @@
       background-color: rgba(72, 138, 172, 0.2);
       padding: 15px;
       border-radius: 10px;
-      margin: 15px 0;
+      margin: 20px 0;
       border-left: 4px solid #90caf9;
     }
 
@@ -241,8 +232,20 @@
       margin-bottom: 5px;
     }
 
+    .mariano-event {
+      background-color: rgba(72, 138, 172, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #90caf9;
+    }
+
+    .mariano-event p {
+      margin-bottom: 5px;
+    }
+
     .stars {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
@@ -259,14 +262,13 @@
     }
 
     footer {
-      margin-top: 20px;
-      font-size: 0.85rem;
+      margin-top: 30px;
+      font-size: 0.9rem;
       color: #90a4ae;
       text-align: center;
       z-index: 2;
-      padding: 15px;
-      display: none;
-      width: 100%;
+      padding: 20px;
+      display: none; /* Initially hidden */
     }
 
     .social-links {
@@ -286,17 +288,17 @@
     }
 
     .swiper {
-      width: calc(100% - 20px);
+      width: 100%;
       max-width: 600px;
-      margin: 20px auto;
+      margin: 40px auto 0;
       z-index: 2;
-      display: none;
+      display: none; /* Initially hidden */
     }
 
     .swiper-slide {
       background: rgba(28, 42, 58, 0.8);
       border-radius: 10px;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
       box-shadow: 0 0 15px rgba(33, 150, 243, 0.2);
       backdrop-filter: blur(5px);
@@ -304,130 +306,58 @@
     }
 
     .swiper-slide span {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: bold;
       color: #90caf9;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .swiper-slide h2 {
-      margin-top: 8px;
-      font-size: 1rem;
+      margin-top: 10px;
+      font-size: 1.1rem;
       color: #e0f7fa;
     }
 
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.3s;
-      padding: 10px;
-    }
+    @media (max-width: 600px) {
+      .overlay {
+        padding: 20px;
+      }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+      h1 {
+        font-size: 2rem;
+      }
 
-    .modal-content {
-      background: linear-gradient(135deg, #1e2a38, #0b1120);
-      padding: 20px;
-      border-radius: 15px;
-      width: calc(100% - 20px);
-      max-width: 500px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(33, 150, 243, 0.5);
-      border: 2px solid #4a6179;
-      position: relative;
-      animation: slideUp 0.4s;
-    }
+      h2 {
+        font-size: 1.1rem;
+      }
 
-    @keyframes slideUp {
-      from { transform: translateY(50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+      p {
+        font-size: 0.95rem;
+      }
 
-    .modal-icon {
-      font-size: 3rem;
-      color: #4caf50;
-      margin-bottom: 15px;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
-    .modal h2 {
-      color: #90caf9;
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-    }
-
-    .modal p {
-      margin-bottom: 20px;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .modal-info {
-      background-color: rgba(72, 138, 172, 0.2);
-      padding: 12px;
-      border-radius: 10px;
-      margin: 15px 0;
-      border-left: 4px solid #90caf9;
-      text-align: left;
-    }
-
-    .modal-info p {
-      margin-bottom: 5px;
-      font-size: 0.95rem;
-    }
-
-    .modal-button {
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: bold;
-      transition: all 0.3s;
-      margin-top: 15px;
-      box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-      width: 100%;
-      max-width: 200px;
-    }
-
-    .modal-button:hover {
-      background-color: #388e3c;
-      transform: scale(1.05);
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: #90a4ae;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-
-    .close-modal:hover {
-      color: #2196f3;
+      button {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px;
+      }
+      
+      .loader span {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .rocket {
+        inset: 40px;
+      }
+      
+      .rocket .fa-rocket {
+        font-size: 2.8em;
+      }
+      
+      .rocket .fa-cloud {
+        font-size: 1.6em;
+      }
     }
 
     /* Animation for the rocket icon */
@@ -444,50 +374,6 @@
     @keyframes fly {
       0%, 100% { transform: translateY(0) rotate(-45deg); }
       50% { transform: translateY(-10px) rotate(-45deg); }
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-      
-      h2 {
-        font-size: 1rem;
-      }
-      
-      p {
-        font-size: 0.9rem;
-      }
-      
-      .event-info {
-        padding: 10px;
-      }
-      
-      .modal h2 {
-        font-size: 1.3rem;
-      }
-      
-      .modal p {
-        font-size: 0.9rem;
-      }
-      
-      .modal-content {
-        padding: 15px;
-      }
-      
-      .loader span {
-        width: 180px;
-        height: 180px;
-      }
-      
-      .rocket {
-        inset: 35px;
-      }
-      
-      .rocket .fa-rocket {
-        font-size: 2.5em;
-      }
     }
   </style>
 </head>
@@ -516,6 +402,16 @@
       <h1><i class="fas fa-rocket rocket-icon"></i> Resgatados</h1>
       <h2>"Lançai a rede" - João 21, 1-14</h2>
       
+      <!-- Novo Evento Mariano -->
+      <div class="mariano-event">
+        <p>📅 <strong>Quinta-feira, 15/05 às 20h00</strong> 🙏🏻✨</p>
+        <p>📍 <strong>Tema: João 19, 25-27 - MOMENTO MARIANO</strong> 💡</p>
+        <p>🎶 <strong>Abertura e animação:</strong> Ministério de Música</p>
+        <p>📣 <strong>Pregação:</strong> Kleber Júnior</p>
+        <p>📖 <strong>Avisos e orações:</strong> Dani</p>
+        <p>Vamos resgatar almas e nos aproximar de Deus, inspirados pela maternidade de Maria! ❤️‍🔥</p>
+      </div>
+      
       <div class="event-info">
         <p>📅 <strong>Quinta-feira às 20h00</strong></p>
         <p>📍 <strong>Comunidade Nossa Senhora Aparecida</strong></p>
@@ -526,35 +422,13 @@
       
       <p>Venha viver uma noite <span class="highlight">inesquecível</span> com Deus e outros jovens como você!</p>
       
-      <p>🎤 Uma <span class="highlight">pregadora abençoada</span> estará conosco compartilhando a Palavra!</p>
+      <p>🎤 Um <span class="highlight">pregador abençoado</span> estará conosco compartilhando a Palavra!</p>
       <p>🎵 <span class="highlight">Louvores</span> que tocam o coração</p>
       <p>🙏 Momento de <span class="highlight">oração</span> e encontro pessoal com Deus</p>
 
       <div class="buttons-container">
         <button onclick="confirmarPresenca()">✅ Confirmar Presença</button>
       </div>
-    </div>
-  </div>
-
-  <!-- Confirmation Modal -->
-  <div class="modal" id="confirmationModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="fecharModal()">&times;</span>
-      <div class="modal-icon">
-        <i class="fas fa-check-circle"></i>
-      </div>
-      <h2>Presença Confirmada!</h2>
-      <p>Sua presença foi registrada com sucesso! Estamos ansiosos para te ver no encontro.</p>
-      
-      <div class="modal-info">
-        <p><strong>📅 Data:</strong> Quinta-feira às 20h00</p>
-        <p><strong>📍 Local:</strong> Comunidade Nossa Senhora Aparecida</p>
-        <p><strong>🚩 Endereço:</strong> Avenida C, 212 - Setor Água Branca</p>
-      </div>
-      
-      <p>Não se esqueça de convidar seus amigos para essa experiência com Deus!</p>
-      
-      <button class="modal-button" onclick="fecharModal()">Entendido</button>
     </div>
   </div>
 
@@ -620,21 +494,7 @@
     });
 
     function confirmarPresenca() {
-      // Show the modal
-      document.getElementById('confirmationModal').style.display = 'flex';
-    }
-
-    function fecharModal() {
-      // Hide the modal
-      document.getElementById('confirmationModal').style.display = 'none';
-    }
-
-    // Close modal when clicking outside the content
-    window.onclick = function(event) {
-      const modal = document.getElementById('confirmationModal');
-      if (event.target == modal) {
-        modal.style.display = 'none';
-      }
+      alert('Presença confirmada! Te esperamos na quinta-feira às 20h! 🙌\n\nLocal: Comunidade Nossa Senhora Aparecida\nAvenida C, 212 - Setor Água Branca');
     }
   </script>
 </body>
