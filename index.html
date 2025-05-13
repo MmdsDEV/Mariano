@@ -312,6 +312,116 @@
       color: #e0f7fa;
     }
 
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #1e2a38, #0b1120);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(33, 150, 243, 0.5);
+      border: 2px solid #4a6179;
+      position: relative;
+      animation: slideUp 0.4s;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-icon {
+      font-size: 4rem;
+      color: #4caf50;
+      margin-bottom: 20px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .modal h2 {
+      color: #90caf9;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    .modal p {
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .modal-info {
+      background-color: rgba(72, 138, 172, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #90caf9;
+      text-align: left;
+    }
+
+    .modal-info p {
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .modal-button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: all 0.3s;
+      margin-top: 15px;
+      box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+    }
+
+    .modal-button:hover {
+      background-color: #388e3c;
+      transform: scale(1.05);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: #90a4ae;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-modal:hover {
+      color: #2196f3;
+    }
+
     @media (max-width: 600px) {
       .overlay {
         padding: 20px;
@@ -350,6 +460,22 @@
       
       .rocket .fa-cloud {
         font-size: 1.6em;
+      }
+      
+      .modal-content {
+        padding: 20px;
+      }
+      
+      .modal-icon {
+        font-size: 3rem;
+      }
+      
+      .modal h2 {
+        font-size: 1.5rem;
+      }
+      
+      .modal p {
+        font-size: 1rem;
       }
     }
 
@@ -415,6 +541,28 @@
     </div>
   </div>
 
+  <!-- Confirmation Modal -->
+  <div class="modal" id="confirmationModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="fecharModal()">&times;</span>
+      <div class="modal-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Presença Confirmada!</h2>
+      <p>Sua presença foi registrada com sucesso! Estamos ansiosos para te ver no encontro.</p>
+      
+      <div class="modal-info">
+        <p><strong>📅 Data:</strong> Quinta-feira às 20h00</p>
+        <p><strong>📍 Local:</strong> Comunidade Nossa Senhora Aparecida</p>
+        <p><strong>🚩 Endereço:</strong> Avenida C, 212 - Setor Água Branca</p>
+      </div>
+      
+      <p>Não se esqueça de convidar seus amigos para essa experiência com Deus!</p>
+      
+      <button class="modal-button" onclick="fecharModal()">Entendido</button>
+    </div>
+  </div>
+
   <div class="swiper mySwiper" id="swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -440,7 +588,6 @@
     <p>Siga-nos nas redes sociais:</p>
     <div class="social-links">
       <a href="https://www.instagram.com/movimentojovem._?igsh=OWpqdjFzYW1xejcw" target="_blank">Instagram</a>
-
     </div>
     <p style="margin-top: 15px;">@Movimentojovem</p>
   </footer>
@@ -478,7 +625,21 @@
     });
 
     function confirmarPresenca() {
-      alert('Presença confirmada! Te esperamos na quinta-feira às 20h! 🙌\n\nLocal: Comunidade Nossa Senhora Aparecida\nAvenida C, 212 - Setor Água Branca');
+      // Show the modal
+      document.getElementById('confirmationModal').style.display = 'flex';
+    }
+
+    function fecharModal() {
+      // Hide the modal
+      document.getElementById('confirmationModal').style.display = 'none';
+    }
+
+    // Close modal when clicking outside the content
+    window.onclick = function(event) {
+      const modal = document.getElementById('confirmationModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
     }
   </script>
 </body>
