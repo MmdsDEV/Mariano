@@ -2,45 +2,17 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resgatados - Grupo de Jovens</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
   
   <link rel="icon" href="https://github.com/MmdsDEV/convite2/blob/main/mj.png?raw=true" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" href="https://github.com/MmdsDEV/convite2/blob/main/mj.png?raw=true" as="image">
-  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://github.com/MmdsDEV/convite2/blob/main/mj.png?raw=true" as="image">
   <style>
-    /* Reset and Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html {
-      font-size: 16px;
-      height: 100%;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #0b1120, #1e2a38);
-      color: #e8f0f5;
-      overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 15px;
-      position: relative;
-      line-height: 1.5;
-    }
-
     /* Rocket Loader Styles */
     .loader-container {
       position: fixed;
@@ -63,13 +35,13 @@
 
     .loader span {
       position: relative;
-      width: 150px;
-      height: 150px;
+      width: 250px;
+      height: 250px;
       background-color: #eaeef0;
-      border: 4px solid #eaeef0;
+      border: 6px solid #eaeef0;
       border-radius: 50%;
-      box-shadow: -5px -5px 10px rgba(255, 255, 255, 1),
-                  5px 5px 15px rgba(255, 255, 255, 0.2);
+      box-shadow: -8px -8px 15px rgba(255, 255, 255, 1),
+                  8px 8px 25px rgba(255, 255, 255, 0.2);
       overflow: hidden;
     }
 
@@ -78,21 +50,21 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      box-shadow: inset 8px 8px 15px rgba(0, 0, 0, 0.5),
-                  inset -4px -4px 10px rgba(255, 255, 255, 1);
+      box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.5),
+                  inset -5px -5px 15px rgba(255, 255, 255, 1);
     }
 
     .loader span::after {
       content: "";
       position: absolute;
-      inset: 30px;
+      inset: 40px;
       background: #eaeef0;
-      border: 2px solid #eaeef0;
+      border: 3px solid #eaeef0;
       border-radius: 50%;
-      box-shadow: -5px -5px 15px rgba(255, 255, 255, 1),
-                  5px 5px 15px rgba(0, 0, 0, 0.25),
-                  inset 2px 2px 8px rgba(0, 0, 0, 0.15),
-                  inset -1px -1px 10px rgba(255, 255, 255, 1);
+      box-shadow: -8px -8px 25px rgba(255, 255, 255, 1),
+                  8px 8px 25px rgba(0, 0, 0, 0.25),
+                  inset 3px 3px 10px rgba(0, 0, 0, 0.15),
+                  inset -1px -1px 15px rgba(255, 255, 255, 1);
     }
 
     .loader span i {
@@ -110,7 +82,7 @@
 
     .rocket {
       position: absolute;
-      inset: 40px;
+      inset: 50px;
       z-index: 10;
       border-radius: 50%;
       display: flex;
@@ -123,8 +95,8 @@
       position: absolute;
       top: 35%;
       color: #ff518c;
-      font-size: 2.5em;
-      -webkit-text-stroke: 1px #000;
+      font-size: 3.5em;
+      -webkit-text-stroke: 2px #000;
       animation: animateRocket 0.2s linear infinite;
     }
 
@@ -135,21 +107,136 @@
 
     .rocket .fa-cloud {
       position: absolute;
-      top: calc(35px * var(--i));
-      left: calc(30px * var(--i));
-      font-size: 1.5em;
+      top: calc(45px * var(--i));
+      left: calc(40px * var(--i));
+      font-size: 2em;
       color: #fff;
-      -webkit-text-stroke: 1px #000;
+      -webkit-text-stroke: 2px #000;
       animation: animateCloud 1.5s linear infinite;
       animation-delay: calc(-0.5s * var(--i));
     }
 
     @keyframes animateCloud {
-      0% { transform: translateY(calc(-25 * 5px)); }
-      100% { transform: translateY(calc(25 * 5px)); }
+      0% { transform: translateY(calc(-35 * 5px)); }
+      100% { transform: translateY(calc(35 * 5px)); }
     }
 
     /* Main Content Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #0b1120, #1e2a38);
+      color: #e8f0f5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .overlay {
+      background-color: rgba(12, 20, 33, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+      border: 2px solid #4a6179;
+      box-shadow: 0 0 25px rgba(72, 138, 172, 0.4);
+      backdrop-filter: blur(5px);
+      margin-bottom: 30px;
+      display: none; /* Initially hidden */
+    }
+
+    .overlay-content {
+      animation: fadeInUp 1s forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #90caf9;
+      margin-bottom: 10px;
+      font-family: 'Pacifico', cursive;
+      text-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: #cfd8dc;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #dce3e9;
+    }
+
+    .highlight {
+      color: #aee6ff;
+      font-weight: bold;
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #2196f3;
+      color: #ffffff;
+      font-weight: bold;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin: 10px 0;
+      box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
+      width: 100%;
+      max-width: 300px;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+      transform: scale(1.05);
+    }
+
+    .event-info {
+      background-color: rgba(72, 138, 172, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #90caf9;
+    }
+
+    .event-info p {
+      margin-bottom: 5px;
+    }
+
     .stars {
       position: absolute;
       top: 0;
@@ -167,167 +254,62 @@
       50% { opacity: 1; }
     }
 
-    .overlay {
-      background-color: rgba(12, 20, 33, 0.9);
-      padding: 20px;
-      border-radius: 15px;
-      max-width: 100%;
-      width: 100%;
-      text-align: center;
-      z-index: 2;
-      border: 1px solid #4a6179;
-      box-shadow: 0 0 15px rgba(72, 138, 172, 0.4);
-      backdrop-filter: blur(5px);
-      margin-bottom: 20px;
-      display: none;
-    }
-
-    .overlay-content {
-      animation: fadeInUp 1s forwards;
-      opacity: 0;
-      transform: translateY(15px);
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h1 {
-      font-size: 2rem;
-      color: #90caf9;
-      margin-bottom: 8px;
-      font-family: 'Pacifico', cursive;
-      text-shadow: 0 0 8px rgba(144, 202, 249, 0.5);
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      color: #cfd8dc;
-      margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 12px;
-      color: #dce3e9;
-    }
-
-    .highlight {
-      color: #aee6ff;
-      font-weight: bold;
-    }
-
-    .buttons-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      margin-top: 15px;
-    }
-
-    button {
-      background-color: #2196f3;
-      color: #ffffff;
-      font-weight: bold;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-      margin: 8px 0;
-      box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
-      width: 100%;
-      max-width: 280px;
-    }
-
-    button:hover {
-      background-color: #1565c0;
-      transform: scale(1.03);
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    .event-info {
-      background-color: rgba(72, 138, 172, 0.2);
-      padding: 12px;
-      border-radius: 8px;
-      margin: 15px 0;
-      border-left: 3px solid #90caf9;
-    }
-
-    .event-info p {
-      margin-bottom: 4px;
-      font-size: 0.9rem;
-    }
-
-    /* Swiper Styles */
-    .swiper {
-      width: 100%;
-      max-width: 100%;
-      margin: 25px auto 0;
-      z-index: 2;
-      display: none;
-    }
-
-    .swiper-slide {
-      background: rgba(28, 42, 58, 0.8);
-      border-radius: 8px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(33, 150, 243, 0.2);
-      backdrop-filter: blur(5px);
-      border: 1px solid #4a6179;
-      height: auto;
-    }
-
-    .swiper-slide span {
-      font-size: 1rem;
-      font-weight: bold;
-      color: #90caf9;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .swiper-slide h2 {
-      margin-top: 8px;
-      font-size: 0.95rem;
-      color: #e0f7fa;
-    }
-
-    /* Footer Styles */
     footer {
-      margin-top: 20px;
-      font-size: 0.8rem;
+      margin-top: 30px;
+      font-size: 0.9rem;
       color: #90a4ae;
       text-align: center;
       z-index: 2;
-      padding: 15px;
-      display: none;
-      width: 100%;
+      padding: 20px;
+      display: none; /* Initially hidden */
     }
 
     .social-links {
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .social-links a {
       color: #90caf9;
-      margin: 0 8px;
+      margin: 0 10px;
       text-decoration: none;
       transition: color 0.3s;
-      font-size: 0.9rem;
     }
 
     .social-links a:hover {
       color: #2196f3;
       text-decoration: underline;
+    }
+
+    .swiper {
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto 0;
+      z-index: 2;
+      display: none; /* Initially hidden */
+    }
+
+    .swiper-slide {
+      background: rgba(28, 42, 58, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(33, 150, 243, 0.2);
+      backdrop-filter: blur(5px);
+      border: 1px solid #4a6179;
+    }
+
+    .swiper-slide span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #90caf9;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .swiper-slide h2 {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #e0f7fa;
     }
 
     /* Modal Styles */
@@ -338,12 +320,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.8);
       z-index: 1000;
       justify-content: center;
       align-items: center;
       animation: fadeIn 0.3s;
-      padding: 15px;
     }
 
     @keyframes fadeIn {
@@ -353,173 +334,165 @@
 
     .modal-content {
       background: linear-gradient(135deg, #1e2a38, #0b1120);
-      padding: 20px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 400px;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      width: 90%;
       text-align: center;
-      box-shadow: 0 0 20px rgba(33, 150, 243, 0.5);
-      border: 1px solid #4a6179;
+      box-shadow: 0 0 30px rgba(33, 150, 243, 0.5);
+      border: 2px solid #4a6179;
       position: relative;
       animation: slideUp 0.4s;
     }
 
     @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
+      from { transform: translateY(50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
 
     .modal-icon {
-      font-size: 3rem;
+      font-size: 4rem;
       color: #4caf50;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      50% { transform: scale(1.1); }
       100% { transform: scale(1); }
     }
 
     .modal h2 {
       color: #90caf9;
-      margin-bottom: 12px;
-      font-size: 1.4rem;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
     }
 
     .modal p {
-      margin-bottom: 20px;
-      font-size: 0.95rem;
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
 
     .modal-info {
       background-color: rgba(72, 138, 172, 0.2);
-      padding: 12px;
-      border-radius: 8px;
-      margin: 15px 0;
-      border-left: 3px solid #90caf9;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #90caf9;
       text-align: left;
     }
 
     .modal-info p {
       margin-bottom: 5px;
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
 
     .modal-button {
       background-color: #4caf50;
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 25px;
+      padding: 12px 25px;
+      border-radius: 30px;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: bold;
       transition: all 0.3s;
-      margin-top: 12px;
-      box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-      width: 100%;
-      max-width: 200px;
+      margin-top: 15px;
+      box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
     }
 
     .modal-button:hover {
       background-color: #388e3c;
-      transform: scale(1.03);
-    }
-
-    .modal-button:active {
-      transform: scale(0.98);
+      transform: scale(1.05);
     }
 
     .close-modal {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 15px;
+      right: 15px;
       color: #90a4ae;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       cursor: pointer;
       transition: color 0.3s;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .close-modal:hover {
       color: #2196f3;
     }
 
-    /* Rocket Icon Animation */
+    @media (max-width: 600px) {
+      .overlay {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      button {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px;
+      }
+      
+      .loader span {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .rocket {
+        inset: 40px;
+      }
+      
+      .rocket .fa-rocket {
+        font-size: 2.8em;
+      }
+      
+      .rocket .fa-cloud {
+        font-size: 1.6em;
+      }
+      
+      .modal-content {
+        padding: 20px;
+      }
+      
+      .modal-icon {
+        font-size: 3rem;
+      }
+      
+      .modal h2 {
+        font-size: 1.5rem;
+      }
+      
+      .modal p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Animation for the rocket icon */
     .rocket-icon {
       display: inline-block;
       animation: fly 3s infinite ease-in-out;
       transform: rotate(-45deg);
-      font-size: 1.1em;
+      font-size: 1.2em;
       vertical-align: middle;
-      margin-right: 8px;
-      text-shadow: 0 0 8px rgba(144, 202, 249, 0.5);
+      margin-right: 10px;
+      text-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
     }
 
     @keyframes fly {
       0%, 100% { transform: translateY(0) rotate(-45deg); }
-      50% { transform: translateY(-8px) rotate(-45deg); }
-    }
-
-    /* Very Small Devices (e.g., iPhone 5/SE) */
-    @media (max-width: 320px) {
-      h1 {
-        font-size: 1.7rem;
-      }
-      
-      h2 {
-        font-size: 1rem;
-      }
-      
-      .modal h2 {
-        font-size: 1.2rem;
-      }
-      
-      .modal-icon {
-        font-size: 2.5rem;
-      }
-    }
-
-    /* Tall Mobile Devices */
-    @media (min-height: 700px) and (max-width: 600px) {
-      .overlay {
-        padding: 25px;
-      }
-      
-      h1 {
-        font-size: 2.2rem;
-      }
-      
-      .modal-content {
-        padding: 25px;
-      }
-    }
-
-    /* Landscape Orientation */
-    @media (orientation: landscape) and (max-height: 500px) {
-      body {
-        padding: 10px;
-      }
-      
-      .overlay {
-        margin-bottom: 10px;
-        padding: 15px;
-      }
-      
-      .swiper {
-        margin-top: 15px;
-      }
-      
-      footer {
-        margin-top: 10px;
-        padding: 10px;
-      }
+      50% { transform: translateY(-10px) rotate(-45deg); }
     }
   </style>
 </head>
@@ -616,13 +589,13 @@
     <div class="social-links">
       <a href="https://www.instagram.com/movimentojovem._?igsh=OWpqdjFzYW1xejcw" target="_blank">Instagram</a>
     </div>
-    <p style="margin-top: 12px;">@Movimentojovem</p>
+    <p style="margin-top: 15px;">@Movimentojovem</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script>
     // Show loader first, then content after delay
-    document.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('load', function() {
       setTimeout(function() {
         document.getElementById('loader').style.opacity = '0';
         setTimeout(function() {
@@ -645,43 +618,29 @@
           // Animate elements sequentially
           const elements = document.querySelectorAll('.overlay-content > *');
           elements.forEach((el, i) => {
-            el.style.animationDelay = `${i * 0.15}s`;
+            el.style.animationDelay = `${i * 0.2}s`;
           });
         }, 500);
-      }, 2500); // Show loader for 2.5 seconds
+      }, 3000); // Show loader for 3 seconds
     });
 
     function confirmarPresenca() {
       // Show the modal
       document.getElementById('confirmationModal').style.display = 'flex';
-      // Prevent background scrolling when modal is open
-      document.body.style.overflow = 'hidden';
     }
 
     function fecharModal() {
       // Hide the modal
       document.getElementById('confirmationModal').style.display = 'none';
-      // Restore background scrolling
-      document.body.style.overflow = 'auto';
     }
 
     // Close modal when clicking outside the content
-    document.getElementById('confirmationModal').addEventListener('click', function(event) {
-      if (event.target === this) {
-        fecharModal();
+    window.onclick = function(event) {
+      const modal = document.getElementById('confirmationModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
       }
-    });
-
-    // Better touch feedback for buttons
-    document.querySelectorAll('button').forEach(button => {
-      button.addEventListener('touchstart', function() {
-        this.style.transform = 'scale(0.98)';
-      });
-      
-      button.addEventListener('touchend', function() {
-        this.style.transform = 'scale(1)';
-      });
-    });
+    }
   </script>
 </body>
 </html>
