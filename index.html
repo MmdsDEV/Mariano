@@ -23,9 +23,327 @@
       transition: opacity 0.5s ease;
     }
 
-    /* ... (mantenha todos os estilos existentes até o final) ... */
+    .loader {
+      position: relative;
+      display: flex;
+    }
 
-    /* NOVOS ESTILOS ADICIONADOS */
+    .loader span {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      background-color: #eaeef0;
+      border: 6px solid #eaeef0;
+      border-radius: 50%;
+      box-shadow: -8px -8px 15px rgba(255, 255, 255, 1),
+                  8px 8px 25px rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+
+    .loader span::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.5),
+                  inset -5px -5px 15px rgba(255, 255, 255, 1);
+    }
+
+    .loader span::after {
+      content: "";
+      position: absolute;
+      inset: 40px;
+      background: #eaeef0;
+      border: 3px solid #eaeef0;
+      border-radius: 50%;
+      box-shadow: -8px -8px 25px rgba(255, 255, 255, 1),
+                  8px 8px 25px rgba(0, 0, 0, 0.25),
+                  inset 3px 3px 10px rgba(0, 0, 0, 0.15),
+                  inset -1px -1px 15px rgba(255, 255, 255, 1);
+    }
+
+    .loader span i {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(#42abff, #ff4f8b, #ffeb3b);
+      animation: animateLoader 1s linear infinite;
+    }
+
+    @keyframes animateLoader {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .rocket {
+      position: absolute;
+      inset: 50px;
+      z-index: 10;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      overflow: hidden;
+    }
+
+    .rocket .fa-rocket {
+      position: absolute;
+      top: 35%;
+      color: #ff518c;
+      font-size: 3.5em;
+      -webkit-text-stroke: 2px #000;
+      animation: animateRocket 0.2s linear infinite;
+    }
+
+    @keyframes animateRocket {
+      0%,100% { transform: translate(0,0) rotate(-45deg); }
+      50% { transform: translate(0,3px) rotate(-45deg); }
+    }
+
+    .rocket .fa-cloud {
+      position: absolute;
+      top: calc(45px * var(--i));
+      left: calc(40px * var(--i));
+      font-size: 2em;
+      color: #fff;
+      -webkit-text-stroke: 2px #000;
+      animation: animateCloud 1.5s linear infinite;
+      animation-delay: calc(-0.5s * var(--i));
+    }
+
+    @keyframes animateCloud {
+      0% { transform: translateY(calc(-35 * 5px)); }
+      100% { transform: translateY(calc(35 * 5px)); }
+    }
+
+    /* Estilos do Conteúdo Principal */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #0b1120, #1e2a38);
+      color: #e8f0f5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .overlay {
+      background-color: rgba(12, 20, 33, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+      border: 2px solid #4a6179;
+      box-shadow: 0 0 25px rgba(72, 138, 172, 0.4);
+      backdrop-filter: blur(5px);
+      margin-bottom: 30px;
+      display: none; /* Inicialmente oculto */
+    }
+
+    .overlay-content {
+      animation: fadeInUp 1s forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #90caf9;
+      margin-bottom: 10px;
+      font-family: 'Pacifico', cursive;
+      text-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: #cfd8dc;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #dce3e9;
+    }
+
+    .highlight {
+      color: #aee6ff;
+      font-weight: bold;
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #2196f3;
+      color: #ffffff;
+      font-weight: bold;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin: 10px 0;
+      box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
+      width: 100%;
+      max-width: 300px;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+      transform: scale(1.05);
+    }
+
+    .btn-ver-imagem {
+      background-color: #ff518c;
+    }
+
+    .btn-ver-imagem:hover {
+      background-color: #e04a7d;
+    }
+
+    .event-info {
+      background-color: rgba(72, 138, 172, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #90caf9;
+    }
+
+    .event-info p {
+      margin-bottom: 5px;
+    }
+
+    .mariano-event {
+      background-color: rgba(72, 138, 172, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #90caf9;
+      text-align: center;
+    }
+
+    .mariano-event img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #90caf9;
+      box-shadow: 0 0 15px rgba(144, 202, 249, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .mariano-event img:hover {
+      transform: scale(1.02);
+    }
+
+    .mariano-event p {
+      margin-bottom: 5px;
+    }
+
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      z-index: 1;
+      pointer-events: none;
+      animation: twinkling 3s infinite;
+    }
+
+    @keyframes twinkling {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #90a4ae;
+      text-align: center;
+      z-index: 2;
+      padding: 20px;
+      display: none; /* Inicialmente oculto */
+    }
+
+    .social-links {
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      color: #90caf9;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #2196f3;
+      text-decoration: underline;
+    }
+
+    .swiper {
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto 0;
+      z-index: 2;
+      display: none; /* Inicialmente oculto */
+    }
+
+    .swiper-slide {
+      background: rgba(28, 42, 58, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(33, 150, 243, 0.2);
+      backdrop-filter: blur(5px);
+      border: 1px solid #4a6179;
+    }
+
+    .swiper-slide span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #90caf9;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .swiper-slide h2 {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #e0f7fa;
+    }
+
+    /* Modal da Imagem */
     .image-modal {
       display: none;
       position: fixed;
@@ -49,6 +367,7 @@
       position: relative;
       max-width: 90%;
       max-height: 90%;
+      text-align: center;
     }
 
     .modal-content img {
@@ -88,13 +407,75 @@
       transform: rotate(90deg);
     }
 
-    .btn-ver-imagem {
-      background-color: #ff518c;
-      margin-top: 10px;
+    @media (max-width: 600px) {
+      .overlay {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      button {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px;
+      }
+      
+      .loader span {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .rocket {
+        inset: 40px;
+      }
+      
+      .rocket .fa-rocket {
+        font-size: 2.8em;
+      }
+      
+      .rocket .fa-cloud {
+        font-size: 1.6em;
+      }
+
+      .mariano-event img {
+        max-width: 100%;
+      }
+
+      .modal-content img {
+        max-height: 60vh;
+      }
+
+      .close-btn {
+        top: -30px;
+        right: 0;
+        font-size: 30px;
+      }
     }
 
-    .btn-ver-imagem:hover {
-      background-color: #e04a7d;
+    /* Animação para o ícone de foguete */
+    .rocket-icon {
+      display: inline-block;
+      animation: fly 3s infinite ease-in-out;
+      transform: rotate(-45deg);
+      font-size: 1.2em;
+      vertical-align: middle;
+      margin-right: 10px;
+      text-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
+    }
+
+    @keyframes fly {
+      0%, 100% { transform: translateY(0) rotate(-45deg); }
+      50% { transform: translateY(-10px) rotate(-45deg); }
     }
   </style>
 </head>
@@ -125,7 +506,7 @@
       
       <!-- Evento Mariano com Imagem -->
       <div class="mariano-event">
-        <img src="mariano.jpeg" alt="Momento Mariano - João 19:25-27 - 'Filho, eis a tua mãe'" id="eventImage">
+        <img src="mariano.jpeg" alt="Momento Mariano - João 19:25-27 - 'Filho, eis a tua mãe'" id="eventImage" onclick="abrirModal()">
         <p>📅 <strong>Quinta-feira, 15/05 às 20h00</strong> 🙏🏻✨</p>
         <p>📍 <strong>Tema: João 19, 25-27 - MOMENTO MARIANO</strong> 💡</p>
         <p>Vamos resgatar almas e nos aproximar de Deus, inspirados pela maternidade de Maria! ❤️‍🔥</p>
@@ -225,7 +606,7 @@
       alert('Presença confirmada! Te esperamos na quinta-feira às 20h! 🙌\n\nLocal: Comunidade Nossa Senhora Aparecida\nAvenida C, 212 - Setor Água Branca');
     }
 
-    // NOVAS FUNÇÕES PARA O MODAL DA IMAGEM
+    // Funções para o modal da imagem
     function abrirModal() {
       const modal = document.getElementById('imageModal');
       modal.style.display = 'flex';
@@ -252,6 +633,9 @@
         fecharModal();
       }
     });
+
+    // Permite clicar na imagem para abrir o modal
+    document.getElementById('eventImage').addEventListener('click', abrirModal);
   </script>
 </body>
 </html>
