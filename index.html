@@ -1,120 +1,255 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <!-- ... (mantenha todo o head existente) ... -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resgatados - Grupo de Jovens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
   <style>
-    /* Adicione esses novos estilos */
-    .image-container {
+    /* Estilos do Loader de Foguete */
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #eaeef0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    /* ... (mantenha todos os estilos existentes até o final) ... */
+
+    /* NOVOS ESTILOS ADICIONADOS */
+    .image-modal {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.8);
+      background-color: rgba(0,0,0,0.9);
       z-index: 1000;
       justify-content: center;
       align-items: center;
-      animation: fadeIn 0.3s ease-out;
+      animation: fadeIn 0.4s;
     }
-    
-    .image-container img {
-      max-width: 90%;
-      max-height: 90%;
-      border: 3px solid #90caf9;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(144, 202, 249, 0.6);
-      transform: scale(0.9);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .image-container img:hover {
-      transform: scale(0.95);
-      box-shadow: 0 0 40px rgba(144, 202, 249, 0.8);
-    }
-    
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-    
-    .close-btn:hover {
-      color: #ff518c;
-    }
-    
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    
+
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border: 3px solid #90caf9;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(144, 202, 249, 0.6);
+      animation: pulse 2s infinite, float 4s ease-in-out infinite;
+    }
+
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+      0% { box-shadow: 0 0 20px rgba(144, 202, 249, 0.6); }
+      50% { box-shadow: 0 0 40px rgba(144, 202, 249, 0.9); }
+      100% { box-shadow: 0 0 20px rgba(144, 202, 249, 0.6); }
     }
-    
-    .pulse-effect {
-      animation: pulse 2s infinite;
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
-    
-    /* Ajuste no botão de ver imagem */
+
+    .close-btn {
+      position: absolute;
+      top: -40px;
+      right: -10px;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ff518c;
+      transform: rotate(90deg);
+    }
+
     .btn-ver-imagem {
       background-color: #ff518c;
       margin-top: 10px;
     }
-    
+
     .btn-ver-imagem:hover {
       background-color: #e04a7d;
     }
   </style>
 </head>
 <body>
-  <!-- ... (mantenha o loader e stars existentes) ... -->
+  <!-- Loader de Foguete -->
+  <div class="loader-container" id="loader">
+    <div class="loader">
+      <div class="rocket">
+        <i class="fas fa-rocket"></i>
+        <i class="fas fa-cloud" style="--i:0"></i>
+        <i class="fas fa-cloud" style="--i:1"></i>
+        <i class="fas fa-cloud" style="--i:2"></i>
+        <i class="fas fa-cloud" style="--i:3"></i>
+      </div>
+      <span>
+        <i></i>
+      </span>
+    </div>
+  </div>
+
+  <!-- Conteúdo Principal (inicialmente oculto) -->
+  <div class="stars"></div>
 
   <div class="overlay" id="content">
     <div class="overlay-content">
-      <!-- ... (mantenha o conteúdo existente até o buttons-container) ... -->
+      <h1><i class="fas fa-rocket rocket-icon"></i> Resgatados</h1>
+      <h2>"Lançai a rede" - João 21, 1-14</h2>
       
+      <!-- Evento Mariano com Imagem -->
+      <div class="mariano-event">
+        <img src="mariano.jpeg" alt="Momento Mariano - João 19:25-27 - 'Filho, eis a tua mãe'" id="eventImage">
+        <p>📅 <strong>Quinta-feira, 15/05 às 20h00</strong> 🙏🏻✨</p>
+        <p>📍 <strong>Tema: João 19, 25-27 - MOMENTO MARIANO</strong> 💡</p>
+        <p>Vamos resgatar almas e nos aproximar de Deus, inspirados pela maternidade de Maria! ❤️‍🔥</p>
+      </div>
+      
+      <div class="event-info">
+        <p>📅 <strong>Quinta-feira às 20h00</strong></p>
+        <p>📍 <strong>Comunidade Nossa Senhora Aparecida</strong></p>
+        <p>Avenida C, 212 - Setor Água Branca</p>
+      </div>
+      
+      <p>Ao saltarem em terra, viram umas brasas preparadas e um peixe em cima delas, e pão. Disse-lhes Jesus: Trazei aqui alguns dos peixes que agora apanhastes.</p>
+      
+      <p>Venha viver uma noite <span class="highlight">inesquecível</span> com Deus e outros jovens como você!</p>
+      
+      <p>🎤 Um <span class="highlight">pregador abençoado</span> estará conosco compartilhando a Palavra!</p>
+      <p>🎵 <span class="highlight">Louvores</span> que tocam o coração</p>
+      <p>🙏 Momento de <span class="highlight">oração</span> e encontro pessoal com Deus</p>
+
       <div class="buttons-container">
         <button onclick="confirmarPresenca()">✅ Confirmar Presença</button>
-        <button class="btn-ver-imagem" onclick="mostrarImagem()">👀 Ver Imagem do Evento</button>
+        <button class="btn-ver-imagem" onclick="abrirModal()">👁️ Ver Imagem Ampliada</button>
       </div>
     </div>
   </div>
 
-  <!-- Container para a imagem em tela cheia -->
-  <div class="image-container" id="imageContainer" onclick="fecharImagem()">
-    <span class="close-btn">&times;</span>
-    <img src="mariano.jpeg" alt="Momento Mariano" class="pulse-effect">
+  <!-- Modal da Imagem -->
+  <div id="imageModal" class="image-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      <img src="mariano.jpeg" alt="Momento Mariano em tela cheia">
+    </div>
   </div>
 
-  <!-- ... (mantenha o restante do HTML existente) ... -->
+  <div class="swiper mySwiper" id="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <span>"Sede fortes e corajosos"</span>
+        <h2>Josué 1:9</h2>
+      </div>
+      <div class="swiper-slide">
+        <span>"Eu sou o caminho, a verdade e a vida"</span>
+        <h2>João 14:6</h2>
+      </div>
+      <div class="swiper-slide">
+        <span>"O Senhor é meu pastor"</span>
+        <h2>Salmo 23</h2>
+      </div>
+      <div class="swiper-slide">
+        <span>"Vinde a mim todos os que estais cansados"</span>
+        <h2>Mateus 11:28</h2>
+      </div>
+    </div>
+  </div>
 
+  <footer id="footer">
+    <p>Siga-nos nas redes sociais:</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/movimentojovem._?igsh=OWpqdjFzYW1xejcw" target="_blank">Instagram</a>
+    </div>
+    <p style="margin-top: 15px;">@Movimentojovem</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script>
-    // ... (mantenha o script existente) ...
+    // Mostra o loader primeiro, depois o conteúdo após um delay
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').style.opacity = '0';
+        setTimeout(function() {
+          document.getElementById('loader').style.display = 'none';
+          document.getElementById('content').style.display = 'block';
+          document.getElementById('swiper').style.display = 'block';
+          document.getElementById('footer').style.display = 'block';
+          
+          // Inicializa o Swiper depois de mostrá-lo
+          const swiper = new Swiper(".mySwiper", {
+            effect: "cards",
+            grabCursor: true,
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            loop: true,
+          });
+          
+          // Anima os elementos sequencialmente
+          const elements = document.querySelectorAll('.overlay-content > *');
+          elements.forEach((el, i) => {
+            el.style.animationDelay = `${i * 0.2}s`;
+          });
+        }, 500);
+      }, 3000); // Mostra o loader por 3 segundos
+    });
 
-    // Funções para mostrar/fechar a imagem
-    function mostrarImagem() {
-      const container = document.getElementById('imageContainer');
-      container.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Impede rolagem quando a imagem está aberta
+    function confirmarPresenca() {
+      alert('Presença confirmada! Te esperamos na quinta-feira às 20h! 🙌\n\nLocal: Comunidade Nossa Senhora Aparecida\nAvenida C, 212 - Setor Água Branca');
     }
 
-    function fecharImagem() {
-      const container = document.getElementById('imageContainer');
-      container.style.display = 'none';
-      document.body.style.overflow = 'auto'; // Restaura a rolagem
+    // NOVAS FUNÇÕES PARA O MODAL DA IMAGEM
+    function abrirModal() {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Desabilita o scroll
     }
 
-    // Fecha a imagem ao pressionar ESC
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        fecharImagem();
+    function fecharModal() {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Habilita o scroll
+    }
+
+    // Fecha o modal ao clicar fora da imagem
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('imageModal');
+      if (event.target === modal) {
+        fecharModal();
+      }
+    });
+
+    // Fecha o modal ao pressionar ESC
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        fecharModal();
       }
     });
   </script>
