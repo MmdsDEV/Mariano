@@ -1,110 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Site com Loader de Foguete</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resgatados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto&display=swap" rel="stylesheet">
   <style>
-    /* Loader */
-    #loader {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.5s ease;
-      z-index: 9999;
-    }
-
-    #loader img {
-      width: 150px;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    /* Conteúdo principal inicialmente oculto */
-    #content, .swiper, footer {
-      display: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    /* Classe para ativar a transição */
-    .show {
-      display: block !important;
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-
-    /* Exemplo de estilos */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      background: url('https://i.imgur.com/zpRYAbn.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
       text-align: center;
     }
 
-    .swiper {
-      padding: 20px;
-      background: #222;
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    footer {
-      padding: 10px;
-      background: #333;
+    .logo {
+      max-width: 80px;
+      margin: 0 auto 20px;
+    }
+
+    h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 3.5em;
+      margin: 0.2em 0;
+    }
+
+    h3 {
+      font-weight: normal;
+      font-size: 1.1em;
+      letter-spacing: 2px;
+      margin-top: 0;
+    }
+
+    .subtitle {
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+
+    .info {
+      margin-top: 30px;
+      font-size: 1.1em;
+      line-height: 1.6em;
+    }
+
+    .info strong {
+      font-weight: bold;
+      font-size: 1.3em;
     }
   </style>
 </head>
 <body>
+  <div class="overlay">
+    <img src="https://i.imgur.com/5kqKhR5.png" alt="Logo" class="logo">
+    <h3>ROMANOS 5,1-5</h3>
+    <h1>RESGATADOS</h1>
+    <div class="subtitle">“Nos gloriamos até das tribulações.”</div>
 
-  <!-- Loader com foguete -->
-  <div id="loader">
-    <img src="foguete.png" alt="Carregando..." />
-  </div>
-
-  <!-- Conteúdo principal -->
-  <div id="content">
-    <div class="overlay">
-      <h1>Bem-vindo ao Site</h1>
-      <p>Conteúdo principal aqui.</p>
-    </div>
-
-    <div class="swiper">
-      <p>Slider ou galeria aqui.</p>
+    <div class="info">
+      <p>Pregador: João Marcus</p>
+      <p><strong>QUINTA | 20h00</strong></p>
+      <p>Comunidade Nsa. Senhora Aparecida</p>
+      <p>Avenida C, 212 - Setor Água Branca</p>
     </div>
   </div>
-
-  <footer>
-    <p>Rodapé do site</p>
-  </footer>
-
-  <!-- Script para exibir o conteúdo após o loader -->
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const loader = document.getElementById('loader');
-        loader.style.opacity = '0';
-
-        setTimeout(() => {
-          loader.style.display = 'none';
-
-          // Mostra o conteúdo principal com animação
-          document.getElementById('content').classList.add('show');
-          document.querySelector('.swiper')?.classList.add('show');
-          document.querySelector('footer')?.classList.add('show');
-        }, 500);
-      }, 3000);
-    });
-  </script>
-
 </body>
 </html>
