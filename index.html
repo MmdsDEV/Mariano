@@ -3,24 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resgatados - Encontro de Jovens</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Resgatados - Grupo de Jovens</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <style>
+    /* Loader de Foguete Espacial */
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a0a20, #1a1a3a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease;
+    }
+
+    .loader {
+      position: relative;
+      display: flex;
+      filter: drop-shadow(0 0 20px rgba(106, 0, 255, 0.5));
+    }
+
+    .loader span {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-color: transparent;
+      border: 4px solid rgba(106, 0, 255, 0.2);
+      border-radius: 50%;
+      box-shadow: 
+        -8px -8px 15px rgba(255, 255, 255, 0.05),
+        8px 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 0 30px rgba(106, 0, 255, 0.1);
+      overflow: hidden;
+    }
+
+    .loader span::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: 
+        inset 10px 10px 20px rgba(0, 0, 0, 0.5),
+        inset -5px -5px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .loader span::after {
+      content: "";
+      position: absolute;
+      inset: 30px;
+      background: transparent;
+      border: 2px solid rgba(106, 0, 255, 0.1);
+      border-radius: 50%;
+      box-shadow: 
+        -8px -8px 25px rgba(255, 255, 255, 0.05),
+        8px 8px 25px rgba(0, 0, 0, 0.2),
+        inset 3px 3px 10px rgba(0, 0, 0, 0.2),
+        inset -1px -1px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .loader span i {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(#6a00ff, #00e5ff, #ff00aa);
+      animation: animateLoader 1.5s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes animateLoader {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .rocket {
+      position: absolute;
+      inset: 40px;
+      z-index: 10;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .rocket .fa-rocket {
+      position: absolute;
+      color: #00e5ff;
+      font-size: 3em;
+      text-shadow: 0 0 10px #00e5ff;
+      animation: animateRocket 0.3s infinite ease-in-out;
+      transform: rotate(-45deg);
+    }
+
+    @keyframes animateRocket {
+      0%, 100% { transform: translate(0,0) rotate(-45deg); }
+      50% { transform: translate(0,5px) rotate(-45deg); }
+    }
+
+    .rocket .fa-cloud {
+      position: absolute;
+      top: calc(40px * var(--i));
+      left: calc(35px * var(--i));
+      font-size: 1.5em;
+      color: rgba(255, 255, 255, 0.8);
+      animation: animateCloud 2s linear infinite;
+      animation-delay: calc(-0.5s * var(--i));
+      filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.7));
+    }
+
+    @keyframes animateCloud {
+      0% { 
+        transform: translateY(calc(-40 * 3px)) scale(0.8);
+        opacity: 0;
+      }
+      50% { 
+        opacity: 1;
+      }
+      100% { 
+        transform: translateY(calc(40 * 3px)) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .loading-text {
+      position: absolute;
+      bottom: 20%;
+      color: #00e5ff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: pulseText 1.5s infinite alternate;
+    }
+
+    @keyframes pulseText {
+      0% { opacity: 0.5; text-shadow: 0 0 5px #00e5ff; }
+      100% { opacity: 1; text-shadow: 0 0 15px #00e5ff; }
+    }
+
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(ellipse at center, transparent 70%, #0a0a20 100%),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white"/></svg>') repeat;
+      background-size: 2px 2px;
+      animation: twinkle 3s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Estilos do Conteúdo Principal */
     :root {
       --primary: #6a00ff;
       --secondary: #00e5ff;
       --accent: #ff00aa;
       --dark: #0a0a20;
       --light: #e0f7ff;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
     }
     
     body {
@@ -54,13 +205,6 @@
       filter: drop-shadow(0 0 10px rgba(106, 0, 255, 0.7));
     }
     
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(50px, -30px) rotate(5deg); }
-      50% { transform: translate(0, -50px) rotate(0deg); }
-      75% { transform: translate(-50px, -30px) rotate(-5deg); }
-    }
-    
     /* Container principal */
     .main-container {
       max-width: 800px;
@@ -68,6 +212,14 @@
       padding: 2rem;
       position: relative;
       z-index: 2;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+    
+    .content-loaded .main-container {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     /* Cabeçalho */
@@ -371,10 +523,41 @@
         padding: 0.8rem 1rem;
         font-size: 0.9rem;
       }
+      
+      .loader span {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .rocket {
+        inset: 30px;
+      }
+      
+      .rocket .fa-rocket {
+        font-size: 2em;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Loader de Entrada -->
+  <div class="loader-container" id="loader">
+    <div class="stars"></div>
+    <div class="loader">
+      <div class="rocket">
+        <i class="fas fa-rocket"></i>
+        <i class="fas fa-cloud" style="--i:0"></i>
+        <i class="fas fa-cloud" style="--i:1"></i>
+        <i class="fas fa-cloud" style="--i:2"></i>
+        <i class="fas fa-cloud" style="--i:3"></i>
+      </div>
+      <span>
+        <i></i>
+      </span>
+    </div>
+    <div class="loading-text">CARREGANDO...</div>
+  </div>
+
   <!-- Partículas espaciais -->
   <canvas id="space-particles"></canvas>
   
@@ -398,7 +581,7 @@
         <p>Inspirados pela maternidade de Maria, vamos resgatar almas e nos aproximar de Deus! ❤️‍🔥</p>
       </div>
       
-      
+      <img src="mariano.jpeg" alt="Momento Mariano" id="event-image" style="width:100%; border-radius:10px; margin-top:1rem; cursor:pointer; border:2px solid var(--primary);">
       
       <div class="button-group">
         <button class="btn btn-primary" onclick="confirmPresence()">
@@ -469,6 +652,7 @@
     <p style="margin-top: 1rem;">@Movimentojovem</p>
   </footer>
   
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script>
     // Inicializa as partículas espaciais
     function initParticles() {
@@ -567,16 +751,38 @@
     
     // Inicializa tudo quando a página carrega
     window.addEventListener('load', () => {
-      initParticles();
-      positionAstronaut();
-      
-      // Anima os elementos sequencialmente
-      document.querySelectorAll('.event-card, .verse-card').forEach((el, i) => {
-        el.style.animationDelay = `${i * 0.2}s`;
-      });
-      
-      // Permite clicar na imagem para abrir o modal
-      document.getElementById('event-image').addEventListener('click', openModal);
+      // Mostra o loader por 3 segundos
+      setTimeout(() => {
+        document.getElementById('loader').style.opacity = '0';
+        
+        setTimeout(() => {
+          document.getElementById('loader').style.display = 'none';
+          document.body.classList.add('content-loaded');
+          
+          // Inicializa os outros elementos
+          initParticles();
+          positionAstronaut();
+          
+          // Anima os elementos sequencialmente
+          document.querySelectorAll('.event-card, .verse-card').forEach((el, i) => {
+            el.style.animationDelay = `${i * 0.2}s`;
+          });
+          
+          // Permite clicar na imagem para abrir o modal
+          document.getElementById('event-image').addEventListener('click', openModal);
+          
+          // Inicializa o Swiper
+          const swiper = new Swiper(".mySwiper", {
+            effect: "cards",
+            grabCursor: true,
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            loop: true,
+          });
+        }, 800);
+      }, 3000);
     });
   </script>
 </body>
