@@ -1,640 +1,716 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resgatados - Grupo de Jovens</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-  <style>
-    /* Estilos do Loader de Foguete */
-    .loader-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #eaeef0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
-    }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resgatados - Grupo de Jovens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+  <style>
+    /* Estilos do Loader de Foguete */
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #eaeef0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
 
-    .loader {
-      position: relative;
-      display: flex;
-    }
+    .loader {
+      position: relative;
+      display: flex;
+    }
 
-    .loader span {
-      position: relative;
-      width: 250px;
-      height: 250px;
-      background-color: #eaeef0;
-      border: 6px solid #eaeef0;
-      border-radius: 50%;
-      box-shadow: -8px -8px 15px rgba(255, 255, 255, 1),
-                  8px 8px 25px rgba(255, 255, 255, 0.2);
-      overflow: hidden;
-    }
+    .loader span {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      background-color: #eaeef0;
+      border: 6px solid #eaeef0;
+      border-radius: 50%;
+      box-shadow: -8px -8px 15px rgba(255, 255, 255, 1),
+                  8px 8px 25px rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
 
-    .loader span::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.5),
-                  inset -5px -5px 15px rgba(255, 255, 255, 1);
-    }
+    .loader span::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.5),
+                  inset -5px -5px 15px rgba(255, 255, 255, 1);
+    }
 
-    .loader span::after {
-      content: "";
-      position: absolute;
-      inset: 40px;
-      background: #eaeef0;
-      border: 3px solid #eaeef0;
-      border-radius: 50%;
-      box-shadow: -8px -8px 25px rgba(255, 255, 255, 1),
-                  8px 8px 25px rgba(0, 0, 0, 0.25),
-                  inset 3px 3px 10px rgba(0, 0, 0, 0.15),
-                  inset -1px -1px 15px rgba(255, 255, 255, 1);
-    }
+    .loader span::after {
+      content: "";
+      position: absolute;
+      inset: 40px;
+      background: #eaeef0;
+      border: 3px solid #eaeef0;
+      border-radius: 50%;
+      box-shadow: -8px -8px 25px rgba(255, 255, 255, 1),
+                  8px 8px 25px rgba(0, 0, 0, 0.25),
+                  inset 3px 3px 10px rgba(0, 0, 0, 0.15),
+                  inset -1px -1px 15px rgba(255, 255, 255, 1);
+    }
 
-    .loader span i {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: linear-gradient(#42abff, #ff4f8b, #ffeb3b);
-      animation: animateLoader 1s linear infinite;
-    }
+    .loader span i {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(#42abff, #ff4f8b, #ffeb3b);
+      animation: animateLoader 1s linear infinite;
+    }
 
-    @keyframes animateLoader {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    @keyframes animateLoader {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-    .rocket {
-      position: absolute;
-      inset: 50px;
-      z-index: 10;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-content: center;
-      overflow: hidden;
-    }
+    .rocket {
+      position: absolute;
+      inset: 50px;
+      z-index: 10;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      overflow: hidden;
+    }
 
-    .rocket .fa-rocket {
-      position: absolute;
-      top: 35%;
-      color: #ff518c;
-      font-size: 3.5em;
-      -webkit-text-stroke: 2px #000;
-      animation: animateRocket 0.2s linear infinite;
-    }
+    .rocket .fa-rocket {
+      position: absolute;
+      top: 35%;
+      color: #ff518c;
+      font-size: 3.5em;
+      -webkit-text-stroke: 2px #000;
+      animation: animateRocket 0.2s linear infinite;
+    }
 
-    @keyframes animateRocket {
-      0%,100% { transform: translate(0,0) rotate(-45deg); }
-      50% { transform: translate(0,3px) rotate(-45deg); }
-    }
+    @keyframes animateRocket {
+      0%,100% { transform: translate(0,0) rotate(-45deg); }
+      50% { transform: translate(0,3px) rotate(-45deg); }
+    }
 
-    .rocket .fa-cloud {
-      position: absolute;
-      top: calc(45px * var(--i));
-      left: calc(40px * var(--i));
-      font-size: 2em;
-      color: #fff;
-      -webkit-text-stroke: 2px #000;
-      animation: animateCloud 1.5s linear infinite;
-      animation-delay: calc(-0.5s * var(--i));
-    }
+    .rocket .fa-cloud {
+      position: absolute;
+      top: calc(45px * var(--i));
+      left: calc(40px * var(--i));
+      font-size: 2em;
+      color: #fff;
+      -webkit-text-stroke: 2px #000;
+      animation: animateCloud 1.5s linear infinite;
+      animation-delay: calc(-0.5s * var(--i));
+    }
 
-    @keyframes animateCloud {
-      0% { transform: translateY(calc(-35 * 5px)); }
-      100% { transform: translateY(calc(35 * 5px)); }
-    }
+    @keyframes animateCloud {
+      0% { transform: translateY(calc(-35 * 5px)); }
+      100% { transform: translateY(calc(35 * 5px)); }
+    }
 
-    /* Estilos do Conteúdo Principal */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Estilos do Conteúdo Principal */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #0b1120, #1e2a38);
-      color: #e8f0f5;
-      overflow-x: hidden;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      position: relative;
-    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #0b1120, #1e2a38);
+      color: #e8f0f5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
 
-    .overlay {
-      background-color: rgba(12, 20, 33, 0.9);
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 700px;
-      width: 100%;
-      text-align: center;
-      z-index: 2;
-      border: 2px solid #4a6179;
-      box-shadow: 0 0 25px rgba(72, 138, 172, 0.4);
-      backdrop-filter: blur(5px);
-      margin-bottom: 30px;
-      display: none; /* Inicialmente oculto */
-    }
+    .overlay {
+      background-color: rgba(12, 20, 33, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      z-index: 2;
+      border: 2px solid #4a6179;
+      box-shadow: 0 0 25px rgba(72, 138, 172, 0.4);
+      backdrop-filter: blur(5px);
+      margin-bottom: 30px;
+      display: none; /* Inicialmente oculto */
+    }
 
-    .overlay-content {
-      animation: fadeInUp 1s forwards;
-      opacity: 0;
-      transform: translateY(20px);
-    }
+    .overlay-content {
+      animation: fadeInUp 1s forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-    h1 {
-      font-size: 2.8rem;
-      color: #90caf9;
-      margin-bottom: 10px;
-      font-family: 'Pacifico', cursive;
-      text-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
-    }
+    h1 {
+      font-size: 2.8rem;
+      color: #90caf9;
+      margin-bottom: 10px;
+      font-family: 'Pacifico', cursive;
+      text-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
+    }
 
-    h2 {
-      font-size: 1.4rem;
-      color: #cfd8dc;
-      margin-bottom: 20px;
-    }
+    h2 {
+      font-size: 1.4rem;
+      color: #cfd8dc;
+      margin-bottom: 20px;
+    }
 
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 15px;
-      color: #dce3e9;
-    }
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #dce3e9;
+    }
 
-    .highlight {
-      color: #aee6ff;
-      font-weight: bold;
-    }
+    .highlight {
+      color: #aee6ff;
+      font-weight: bold;
+    }
 
-    .buttons-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      margin-top: 20px;
-    }
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 20px;
+    }
 
-    button {
-      background-color: #2196f3;
-      color: #ffffff;
-      font-weight: bold;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      margin: 10px 0;
-      box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
-      width: 100%;
-      max-width: 300px;
-    }
+    button {
+      background-color: #2196f3;
+      color: #ffffff;
+      font-weight: bold;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin: 10px 0;
+      box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
+      width: 100%;
+      max-width: 300px;
+    }
 
-    button:hover {
-      background-color: #1565c0;
-      transform: scale(1.05);
-    }
+    button:hover {
+      background-color: #1565c0;
+      transform: scale(1.05);
+    }
 
-    .btn-ver-imagem {
-      background-color: #ff518c;
-    }
+    .btn-ver-imagem {
+      background-color: #ff518c;
+    }
 
-    .btn-ver-imagem:hover {
-      background-color: #e04a7d;
-    }
+    .btn-ver-imagem:hover {
+      background-color: #e04a7d;
+    }
 
-    .event-info {
-      background-color: rgba(72, 138, 172, 0.2);
-      padding: 15px;
-      border-radius: 10px;
-      margin: 20px 0;
-      border-left: 4px solid #90caf9;
-    }
+    .event-info {
+      background-color: rgba(72, 138, 172, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #90caf9;
+    }
 
-    .event-info p {
-      margin-bottom: 5px;
-    }
+    .event-info p {
+      margin-bottom: 5px;
+    }
 
-    .mariano-event {
-      background-color: rgba(72, 138, 172, 0.2);
-      padding: 15px;
-      border-radius: 10px;
-      margin: 20px 0;
-      border-left: 4px solid #90caf9;
-      text-align: center;
-    }
+    .mariano-event {
+      background-color: rgba(72, 138, 172, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid #90caf9;
+      text-align: center;
+    }
 
-    .mariano-event img {
-      width: 100%;
-      max-width: 500px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      border: 2px solid #90caf9;
-      box-shadow: 0 0 15px rgba(144, 202, 249, 0.3);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+    .mariano-event img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #90caf9;
+      box-shadow: 0 0 15px rgba(144, 202, 249, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
 
-    .mariano-event img:hover {
-      transform: scale(1.02);
-    }
+    .mariano-event img:hover {
+      transform: scale(1.02);
+    }
 
-    .mariano-event p {
-      margin-bottom: 5px;
-    }
+    .mariano-event p {
+      margin-bottom: 5px;
+    }
 
-    .stars {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      z-index: 1;
-      pointer-events: none;
-      animation: twinkling 3s infinite;
-    }
+    /* Estrelas */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
 
-    @keyframes twinkling {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      animation: twinkle var(--duration) infinite ease-in-out;
+    }
 
-    footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
-      color: #90a4ae;
-      text-align: center;
-      z-index: 2;
-      padding: 20px;
-      display: none; /* Inicialmente oculto */
-    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
 
-    .social-links {
-      margin-top: 10px;
-    }
+    /* Astronauta */
+    .astronaut {
+      position: fixed;
+      width: 150px;
+      height: 150px;
+      z-index: 2;
+      pointer-events: none;
+      animation: float 8s infinite ease-in-out;
+    }
 
-    .social-links a {
-      color: #90caf9;
-      margin: 0 10px;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(50px, -30px) rotate(5deg); }
+      50% { transform: translate(0, -50px) rotate(0deg); }
+      75% { transform: translate(-50px, -30px) rotate(-5deg); }
+    }
 
-    .social-links a:hover {
-      color: #2196f3;
-      text-decoration: underline;
-    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #90a4ae;
+      text-align: center;
+      z-index: 2;
+      padding: 20px;
+      display: none; /* Inicialmente oculto */
+    }
 
-    .swiper {
-      width: 100%;
-      max-width: 600px;
-      margin: 40px auto 0;
-      z-index: 2;
-      display: none; /* Inicialmente oculto */
-    }
+    .social-links {
+      margin-top: 10px;
+    }
 
-    .swiper-slide {
-      background: rgba(28, 42, 58, 0.8);
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(33, 150, 243, 0.2);
-      backdrop-filter: blur(5px);
-      border: 1px solid #4a6179;
-    }
+    .social-links a {
+      color: #90caf9;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-    .swiper-slide span {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #90caf9;
-      display: block;
-      margin-bottom: 10px;
-    }
+    .social-links a:hover {
+      color: #2196f3;
+      text-decoration: underline;
+    }
 
-    .swiper-slide h2 {
-      margin-top: 10px;
-      font-size: 1.1rem;
-      color: #e0f7fa;
-    }
+    .swiper {
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto 0;
+      z-index: 2;
+      display: none; /* Inicialmente oculto */
+    }
 
-    /* Modal da Imagem */
-    .image-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.9);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.4s;
-    }
+    .swiper-slide {
+      background: rgba(28, 42, 58, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(33, 150, 243, 0.2);
+      backdrop-filter: blur(5px);
+      border: 1px solid #4a6179;
+    }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+    .swiper-slide span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #90caf9;
+      display: block;
+      margin-bottom: 10px;
+    }
 
-    .modal-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90%;
-      text-align: center;
-    }
+    .swiper-slide h2 {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #e0f7fa;
+    }
 
-    .modal-content img {
-      max-width: 100%;
-      max-height: 80vh;
-      border: 3px solid #90caf9;
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(144, 202, 249, 0.6);
-      animation: pulse 2s infinite, float 4s ease-in-out infinite;
-    }
+    /* Modal da Imagem */
+    .image-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.4s;
+    }
 
-    @keyframes pulse {
-      0% { box-shadow: 0 0 20px rgba(144, 202, 249, 0.6); }
-      50% { box-shadow: 0 0 40px rgba(144, 202, 249, 0.9); }
-      100% { box-shadow: 0 0 20px rgba(144, 202, 249, 0.6); }
-    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      text-align: center;
+    }
 
-    .close-btn {
-      position: absolute;
-      top: -40px;
-      right: -10px;
-      color: white;
-      font-size: 35px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
+    .modal-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border: 3px solid #90caf9;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(144, 202, 249, 0.6);
+      animation: pulse 2s infinite, float 4s ease-in-out infinite;
+    }
 
-    .close-btn:hover {
-      color: #ff518c;
-      transform: rotate(90deg);
-    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 20px rgba(144, 202, 249, 0.6); }
+      50% { box-shadow: 0 0 40px rgba(144, 202, 249, 0.9); }
+      100% { box-shadow: 0 0 20px rgba(144, 202, 249, 0.6); }
+    }
 
-    @media (max-width: 600px) {
-      .overlay {
-        padding: 20px;
-      }
+    .close-btn {
+      position: absolute;
+      top: -40px;
+      right: -10px;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
 
-      h1 {
-        font-size: 2rem;
-      }
+    .close-btn:hover {
+      color: #ff518c;
+      transform: rotate(90deg);
+    }
 
-      h2 {
-        font-size: 1.1rem;
-      }
+    @media (max-width: 600px) {
+      .overlay {
+        padding: 20px;
+      }
 
-      p {
-        font-size: 0.95rem;
-      }
+      h1 {
+        font-size: 2rem;
+      }
 
-      button {
-        width: 100%;
-        font-size: 1rem;
-        padding: 12px;
-      }
-      
-      .loader span {
-        width: 200px;
-        height: 200px;
-      }
-      
-      .rocket {
-        inset: 40px;
-      }
-      
-      .rocket .fa-rocket {
-        font-size: 2.8em;
-      }
-      
-      .rocket .fa-cloud {
-        font-size: 1.6em;
-      }
+      h2 {
+        font-size: 1.1rem;
+      }
 
-      .mariano-event img {
-        max-width: 100%;
-      }
+      p {
+        font-size: 0.95rem;
+      }
 
-      .modal-content img {
-        max-height: 60vh;
-      }
+      button {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px;
+      }
+      
+      .loader span {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .rocket {
+        inset: 40px;
+      }
+      
+      .rocket .fa-rocket {
+        font-size: 2.8em;
+      }
+      
+      .rocket .fa-cloud {
+        font-size: 1.6em;
+      }
 
-      .close-btn {
-        top: -30px;
-        right: 0;
-        font-size: 30px;
-      }
-    }
+      .mariano-event img {
+        max-width: 100%;
+      }
 
-    /* Animação para o ícone de foguete */
-    .rocket-icon {
-      display: inline-block;
-      animation: fly 3s infinite ease-in-out;
-      transform: rotate(-45deg);
-      font-size: 1.2em;
-      vertical-align: middle;
-      margin-right: 10px;
-      text-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
-    }
+      .modal-content img {
+        max-height: 60vh;
+      }
 
-    @keyframes fly {
-      0%, 100% { transform: translateY(0) rotate(-45deg); }
-      50% { transform: translateY(-10px) rotate(-45deg); }
-    }
-  </style>
+      .close-btn {
+        top: -30px;
+        right: 0;
+        font-size: 30px;
+      }
+
+      .astronaut {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    /* Animação para o ícone de foguete */
+    .rocket-icon {
+      display: inline-block;
+      animation: fly 3s infinite ease-in-out;
+      transform: rotate(-45deg);
+      font-size: 1.2em;
+      vertical-align: middle;
+      margin-right: 10px;
+      text-shadow: 0 0 10px rgba(144, 202, 249, 0.5);
+    }
+
+    @keyframes fly {
+      0%, 100% { transform: translateY(0) rotate(-45deg); }
+      50% { transform: translateY(-10px) rotate(-45deg); }
+    }
+  </style>
 </head>
 <body>
-  <!-- Loader de Foguete -->
-  <div class="loader-container" id="loader">
-    <div class="loader">
-      <div class="rocket">
-        <i class="fas fa-rocket"></i>
-        <i class="fas fa-cloud" style="--i:0"></i>
-        <i class="fas fa-cloud" style="--i:1"></i>
-        <i class="fas fa-cloud" style="--i:2"></i>
-        <i class="fas fa-cloud" style="--i:3"></i>
-      </div>
-      <span>
-        <i></i>
-      </span>
-    </div>
-  </div>
+  <!-- Loader de Foguete -->
+  <div class="loader-container" id="loader">
+    <div class="loader">
+      <div class="rocket">
+        <i class="fas fa-rocket"></i>
+        <i class="fas fa-cloud" style="--i:0"></i>
+        <i class="fas fa-cloud" style="--i:1"></i>
+        <i class="fas fa-cloud" style="--i:2"></i>
+        <i class="fas fa-cloud" style="--i:3"></i>
+      </div>
+      <span>
+        <i></i>
+      </span>
+    </div>
+  </div>
 
-  <!-- Conteúdo Principal (inicialmente oculto) -->
-  <div class="stars"></div>
+  <!-- Fundo estrelado -->
+  <div id="starfield"></div>
 
-  <div class="overlay" id="content">
-    <div class="overlay-content">
-      <h1><i class="fas fa-rocket rocket-icon"></i> Resgatados</h1>
-      <h2>"Lançai a rede" - João 21, 1-14</h2>
-      
-      <!-- Evento Mariano com Imagem -->
-      <div class="mariano-event">
-        <p>📅 <strong>Quinta-feira, 15/05 às 20h00</strong> 🙏🏻✨</p>
-        <p>📍 <strong>Tema: João 19, 25-27 - MOMENTO MARIANO</strong> 💡</p>
-        <p>Vamos resgatar almas e nos aproximar de Deus, inspirados pela maternidade de Maria! ❤️‍🔥</p>
-      </div>
-      
-      <div class="event-info">
-        <p>📅 <strong>Quinta-feira às 20h00</strong></p>
-        <p>📍 <strong>Comunidade Nossa Senhora Aparecida</strong></p>
-        <p>Avenida C, 212 - Setor Água Branca</p>
-      </div>
-      
-      <p>Ao saltarem em terra, viram umas brasas preparadas e um peixe em cima delas, e pão. Disse-lhes Jesus: Trazei aqui alguns dos peixes que agora apanhastes.</p>
-      
-      <p>Venha viver uma noite <span class="highlight">inesquecível</span> com Deus e outros jovens como você!</p>
-      
-      <p>🎤 Um <span class="highlight">pregador abençoado</span> estará conosco compartilhando a Palavra!</p>
-      <p>🎵 <span class="highlight">Louvores</span> que tocam o coração</p>
-      <p>🙏 Momento de <span class="highlight">oração</span> e encontro pessoal com Deus</p>
+  <!-- Astronauta -->
+  <img src="https://cdn-icons-png.flaticon.com/512/5348/5348059.png" class="astronaut" alt="Astronauta">
 
-      <div class="buttons-container">
-        <button onclick="confirmarPresenca()">✅ Confirmar Presença</button>
-        <button class="btn-ver-imagem" onclick="abrirModal() img src= mariano.jpeg alt=Momento Mariano - João 19:25-27 - 'Filho, eis a tua mãe'" id="eventImage" onclick="abrirModal()">👁️ Ver Imagem Especial</button>
-      </div>
-    </div>
-  </div>
+  <!-- Conteúdo Principal (inicialmente oculto) -->
+  <div class="overlay" id="content">
+    <div class="overlay-content">
+      <h1><i class="fas fa-rocket rocket-icon"></i> Resgatados</h1>
+      <h2>"Lançai a rede" - João 21, 1-14</h2>
+      
+      <!-- Evento Mariano com Imagem -->
+      <div class="mariano-event">
+        <p>📅 <strong>Quinta-feira, 15/05 às 20h00</strong> 🙏🏻✨</p>
+        <p>📍 <strong>Tema: João 19, 25-27 - MOMENTO MARIANO</strong> 💡</p>
+        <p>Vamos resgatar almas e nos aproximar de Deus, inspirados pela maternidade de Maria! ❤️‍🔥</p>
+        <img src="mariano.jpeg" alt="Momento Mariano - João 19:25-27 - 'Filho, eis a tua mãe'" id="eventImage">
+      </div>
+      
+      <div class="event-info">
+        <p>📅 <strong>Quinta-feira às 20h00</strong></p>
+        <p>📍 <strong>Comunidade Nossa Senhora Aparecida</strong></p>
+        <p>Avenida C, 212 - Setor Água Branca</p>
+      </div>
+      
+      <p>Ao saltarem em terra, viram umas brasas preparadas e um peixe em cima delas, e pão. Disse-lhes Jesus: Trazei aqui alguns dos peixes que agora apanhastes.</p>
+      
+      <p>Venha viver uma noite <span class="highlight">inesquecível</span> com Deus e outros jovens como você!</p>
+      
+      <p>🎤 Um <span class="highlight">pregador abençoado</span> estará conosco compartilhando a Palavra!</p>
+      <p>🎵 <span class="highlight">Louvores</span> que tocam o coração</p>
+      <p>🙏 Momento de <span class="highlight">oração</span> e encontro pessoal com Deus</p>
 
-  <!-- Modal da Imagem -->
-  <div id="imageModal" class="image-modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="fecharModal()">&times;</span>
-      <img src="mariano.jpeg" alt="Momento Mariano em tela cheia">
-    </div>
-  </div>
+      <div class="buttons-container">
+        <button onclick="confirmarPresenca()">✅ Confirmar Presença</button>
+        <button class="btn-ver-imagem" onclick="abrirModal()">👁️ Ver Imagem Especial</button>
+      </div>
+    </div>
+  </div>
 
-  <div class="swiper mySwiper" id="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <span>"Sede fortes e corajosos"</span>
-        <h2>Josué 1:9</h2>
-      </div>
-      <div class="swiper-slide">
-        <span>"Eu sou o caminho, a verdade e a vida"</span>
-        <h2>João 14:6</h2>
-      </div>
-      <div class="swiper-slide">
-        <span>"O Senhor é meu pastor"</span>
-        <h2>Salmo 23</h2>
-      </div>
-      <div class="swiper-slide">
-        <span>"Vinde a mim todos os que estais cansados"</span>
-        <h2>Mateus 11:28</h2>
-      </div>
-    </div>
-  </div>
+  <!-- Modal da Imagem -->
+  <div id="imageModal" class="image-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharModal()">&times;</span>
+      <img src="mariano.jpeg" alt="Momento Mariano em tela cheia">
+    </div>
+  </div>
 
-  <footer id="footer">
-    <p>Siga-nos nas redes sociais:</p>
-    <div class="social-links">
-      <a href="https://www.instagram.com/movimentojovem._?igsh=OWpqdjFzYW1xejcw" target="_blank">Instagram</a>
-    </div>
-    <p style="margin-top: 15px;">@Movimentojovem</p>
-  </footer>
+  <div class="swiper mySwiper" id="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <span>"Sede fortes e corajosos"</span>
+        <h2>Josué 1:9</h2>
+      </div>
+      <div class="swiper-slide">
+        <span>"Eu sou o caminho, a verdade e a vida"</span>
+        <h2>João 14:6</h2>
+      </div>
+      <div class="swiper-slide">
+        <span>"O Senhor é meu pastor"</span>
+        <h2>Salmo 23</h2>
+      </div>
+      <div class="swiper-slide">
+        <span>"Vinde a mim todos os que estais cansados"</span>
+        <h2>Mateus 11:28</h2>
+      </div>
+    </div>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-  <script>
-    // Mostra o loader primeiro, depois o conteúdo após um delay
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loader').style.opacity = '0';
-        setTimeout(function() {
-          document.getElementById('loader').style.display = 'none';
-          document.getElementById('content').style.display = 'block';
-          document.getElementById('swiper').style.display = 'block';
-          document.getElementById('footer').style.display = 'block';
-          
-          // Inicializa o Swiper depois de mostrá-lo
-          const swiper = new Swiper(".mySwiper", {
-            effect: "cards",
-            grabCursor: true,
-            autoplay: {
-              delay: 5000,
-              disableOnInteraction: false,
-            },
-            loop: true,
-          });
-          
-          // Anima os elementos sequencialmente
-          const elements = document.querySelectorAll('.overlay-content > *');
-          elements.forEach((el, i) => {
-            el.style.animationDelay = `${i * 0.2}s`;
-          });
-        }, 500);
-      }, 3000); // Mostra o loader por 3 segundos
-    });
+  <footer id="footer">
+    <p>Siga-nos nas redes sociais:</p>
+    <div class="social-links">
+      <a href="https://www.instagram.com/movimentojovem._?igsh=OWpqdjFzYW1xejcw" target="_blank">Instagram</a>
+    </div>
+    <p style="margin-top: 15px;">@Movimentojovem</p>
+  </footer>
 
-    function confirmarPresenca() {
-      alert('Presença confirmada! Te esperamos na quinta-feira às 20h! 🙌\n\nLocal: Comunidade Nossa Senhora Aparecida\nAvenida C, 212 - Setor Água Branca');
-    }
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script>
+    // Mostra o loader primeiro, depois o conteúdo após um delay
+    window.addEventListener('load', function() {
+      // Cria o fundo estrelado
+      createStarfield();
+      
+      // Posiciona o astronauta aleatoriamente
+      positionAstronaut();
 
-    // Funções para o modal da imagem
-    function abrirModal() {
-      const modal = document.getElementById('imageModal');
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Desabilita o scroll
-    }
+      setTimeout(function() {
+        document.getElementById('loader').style.opacity = '0';
+        setTimeout(function() {
+          document.getElementById('loader').style.display = 'none';
+          document.getElementById('content').style.display = 'block';
+          document.getElementById('swiper').style.display = 'block';
+          document.getElementById('footer').style.display = 'block';
+          
+          // Inicializa o Swiper depois de mostrá-lo
+          const swiper = new Swiper(".mySwiper", {
+            effect: "cards",
+            grabCursor: true,
+            autoplay: {
+              delay: 5000,
+              disableOnInteraction: false,
+            },
+            loop: true,
+          });
+          
+          // Anima os elementos sequencialmente
+          const elements = document.querySelectorAll('.overlay-content > *');
+          elements.forEach((el, i) => {
+            el.style.animationDelay = `${i * 0.2}s`;
+          });
+        }, 500);
+      }, 3000); // Mostra o loader por 3 segundos
+    });
 
-    function fecharModal() {
-      const modal = document.getElementById('imageModal');
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto'; // Habilita o scroll
-    }
+    function confirmarPresenca() {
+      alert('Presença confirmada! Te esperamos na quinta-feira às 20h! 🙌\n\nLocal: Comunidade Nossa Senhora Aparecida\nAvenida C, 212 - Setor Água Branca');
+    }
 
-    // Fecha o modal ao clicar fora da imagem
-    window.addEventListener('click', function(event) {
-      const modal = document.getElementById('imageModal');
-      if (event.target === modal) {
-        fecharModal();
-      }
-    });
+    // Funções para o modal da imagem
+    function abrirModal() {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Desabilita o scroll
+    }
 
-    // Fecha o modal ao pressionar ESC
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        fecharModal();
-      }
-    });
+    function fecharModal() {
+      const modal = document.getElementById('imageModal');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Habilita o scroll
+    }
 
-    // Permite clicar na imagem para abrir o modal
-    document.getElementById('eventImage').addEventListener('click', abrirModal);
-  </script>
+    // Fecha o modal ao clicar fora da imagem
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('imageModal');
+      if (event.target === modal) {
+        fecharModal();
+      }
+    });
+
+    // Fecha o modal ao pressionar ESC
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        fecharModal();
+      }
+    });
+
+    // Permite clicar na imagem para abrir o modal
+    document.getElementById('eventImage').addEventListener('click', abrirModal);
+
+    // Cria o fundo estrelado dinâmico
+    function createStarfield() {
+      const starfield = document.getElementById('starfield');
+      const starCount = 200;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // Tamanho aleatório entre 1px e 3px
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        
+        // Posição aleatória
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        
+        // Duração da animação aleatória
+        const duration = Math.random() * 5 + 3;
+        star.style.setProperty('--duration', `${duration}s`);
+        
+        // Brilho aleatório
+        star.style.opacity = Math.random() * 0.5 + 0.5;
+        
+        starfield.appendChild(star);
+      }
+    }
+
+    // Posiciona o astronauta em uma posição aleatória
+    function positionAstronaut() {
+      const astronaut = document.querySelector('.astronaut');
+      const maxX = window.innerWidth - 150;
+      const maxY = window.innerHeight - 150;
+      
+      // Posição inicial aleatória
+      const startX = Math.random() * maxX;
+      const startY = Math.random() * maxY;
+      
+      astronaut.style.left = `${startX}px`;
+      astronaut.style.top = `${startY}px`;
+    }
+  </script>
 </body>
 </html>
