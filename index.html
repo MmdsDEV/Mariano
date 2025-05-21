@@ -200,15 +200,34 @@
       pointer-events: none;
     }
     
-    /* Astronauta flutuante */
+    /* Astronauta flutuante - Melhorado */
     .astronaut {
       position: fixed;
       width: 120px;
       height: 120px;
       z-index: 1;
       pointer-events: none;
-      animation: float 12s infinite ease-in-out;
       filter: drop-shadow(0 0 15px rgba(0, 150, 255, 0.7));
+      animation: float 15s infinite ease-in-out;
+      will-change: transform;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      20% {
+        transform: translate(20px, -10px) rotate(5deg);
+      }
+      40% {
+        transform: translate(-15px, 15px) rotate(-5deg);
+      }
+      60% {
+        transform: translate(25px, 5px) rotate(3deg);
+      }
+      80% {
+        transform: translate(-10px, -15px) rotate(-3deg);
+      }
     }
     
     /* Container principal */
@@ -333,6 +352,7 @@
       justify-content: center;
       gap: 0.5rem;
       text-align: center;
+      -webkit-tap-highlight-color: transparent;
     }
     
     .btn-primary {
@@ -373,6 +393,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s;
+      touch-action: manipulation;
     }
     
     .modal.active {
@@ -511,7 +532,7 @@
       to { transform: scale(1); }
     }
     
-    /* Responsivo */
+    /* Responsivo Melhorado */
     @media (max-width: 768px) {
       .main-container {
         padding: 1.5rem;
@@ -534,6 +555,25 @@
       .astronaut {
         width: 80px;
         height: 80px;
+        animation: floatMobile 15s infinite ease-in-out;
+      }
+      
+      @keyframes floatMobile {
+        0%, 100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        20% {
+          transform: translate(10px, -5px) rotate(3deg);
+        }
+        40% {
+          transform: translate(-8px, 8px) rotate(-3deg);
+        }
+        60% {
+          transform: translate(12px, 3px) rotate(2deg);
+        }
+        80% {
+          transform: translate(-5px, -8px) rotate(-2deg);
+        }
       }
       
       .btn {
@@ -556,6 +596,57 @@
       
       .verse-card {
         padding: 1.2rem;
+      }
+      
+      .event-info {
+        padding: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .header h2 {
+        font-size: 1rem;
+      }
+      
+      .astronaut {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .event-card h3 {
+        font-size: 1.3rem;
+      }
+      
+      .btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .modal-content {
+        max-width: 95%;
+        max-height: 95%;
+      }
+    }
+    
+    /* Melhorias para touch devices */
+    @media (hover: none) {
+      .btn:hover {
+        transform: none;
+      }
+      
+      .event-card:hover {
+        transform: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+      
+      .verse-card:hover {
+        transform: none;
+        background: rgba(0, 102, 255, 0.15);
+        box-shadow: none;
       }
     }
   </style>
@@ -604,10 +695,10 @@
     
       <div class="button-group">
         <button class="btn btn-primary" onclick="confirmPresence()">
-          <i class="fas fa-check-circle"></i> Confirmar Presença <spam>'🚀'</spam>
+          <i class="fas fa-check-circle"></i> Confirmar Presença
         </button>
         <button class="btn btn-secondary" onclick="openModal()">
-          <i class="fas fa-expand"></i> Ver Imagem Especial
+          <i class="fas fa-expand"></i> Ver Imagem Ampliada
         </button>
       </div>
     </div>
@@ -627,26 +718,24 @@
       <p>🙏 Momento de <span class="highlight">oração</span> e encontro pessoal com Deus</p>
     </div>
     
-
-  
-  <!-- Modal -->
-  <div class="modal" id="image-modal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal()">&times;</button>
-      <img src="mariano.jpeg" alt="Momento Mariano em tela cheia">
+    <!-- Modal -->
+    <div class="modal" id="image-modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+        <img src="mariano.jpeg" alt="Momento Mariano em tela cheia">
+      </div>
     </div>
+    
+    <footer>
+      <p>Siga-nos nas redes sociais:</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/movimentojovem._?igsh=OWpqdjFzYW1xejcw" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <p style="margin-top: 1.5rem; color: var(--secondary);">@Movimentojovem</p>
+    </footer>
   </div>
-  
-  <footer>
-    <p>Siga-nos nas redes sociais:</p>
-    <div class="social-links">
-      <a href="https://www.instagram.com/movimentojovem._?igsh=OWpqdjFzYW1xejcw" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-      
-    </div>
-    <p style="margin-top: 1.5rem; color: var(--secondary);">@Movimentojovem</p>
-  </footer>
   
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script>
@@ -705,14 +794,38 @@
       });
     }
     
-    // Posiciona o astronauta aleatoriamente
-    function positionAstronaut() {
+    // Movimenta o astronauta aleatoriamente pela tela
+    function moveAstronaut() {
       const astronaut = document.querySelector('.astronaut');
-      const maxX = window.innerWidth - 120;
-      const maxY = window.innerHeight - 120;
+      const duration = 15000; // 15 segundos
+      const viewportWidth = window.innerWidth - astronaut.offsetWidth;
+      const viewportHeight = window.innerHeight - astronaut.offsetHeight;
       
-      astronaut.style.left = `${Math.random() * maxX}px`;
-      astronaut.style.top = `${Math.random() * maxY}px`;
+      function animate() {
+        // Posição aleatória dentro da viewport
+        const randomX = Math.random() * viewportWidth;
+        const randomY = Math.random() * viewportHeight;
+        
+        astronaut.style.transition = `all ${duration/1000}s ease-in-out`;
+        astronaut.style.left = `${randomX}px`;
+        astronaut.style.top = `${randomY}px`;
+      }
+      
+      // Inicia a animação
+      animate();
+      
+      // Continua movendo a cada intervalo
+      setInterval(animate, duration);
+      
+      // Reposiciona quando a janela é redimensionada
+      window.addEventListener('resize', () => {
+        const currentLeft = parseInt(astronaut.style.left) || 0;
+        const currentTop = parseInt(astronaut.style.top) || 0;
+        
+        // Ajusta para não sair da tela
+        astronaut.style.left = `${Math.min(currentLeft, viewportWidth)}px`;
+        astronaut.style.top = `${Math.min(currentTop, viewportHeight)}px`;
+      });
     }
     
     // Modal functions
@@ -745,6 +858,11 @@
       alert('Presença confirmada! 🎉\n\nTe esperamos na quinta-feira às 20h na Comunidade Nossa Senhora Aparecida!');
     }
     
+    // Detecta se é um dispositivo touch
+    function isTouchDevice() {
+      return 'ontouchstart' in window || navigator.maxTouchPoints;
+    }
+    
     // Inicializa tudo quando a página carrega
     window.addEventListener('load', () => {
       // Mostra o loader por 3 segundos
@@ -757,26 +875,19 @@
           
           // Inicializa os outros elementos
           initParticles();
-          positionAstronaut();
+          moveAstronaut();
           
           // Anima os elementos sequencialmente
           document.querySelectorAll('.event-card, .verse-card').forEach((el, i) => {
             el.style.animationDelay = `${i * 0.2}s`;
           });
           
-          // Permite clicar na imagem para abrir o modal
-          document.getElementById('event-image').addEventListener('click', openModal);
-          
-          // Inicializa o Swiper
-          const swiper = new Swiper(".mySwiper", {
-            effect: "cards",
-            grabCursor: true,
-            autoplay: {
-              delay: 5000,
-              disableOnInteraction: false,
-            },
-            loop: true,
-          });
+          // Ajustes para dispositivos touch
+          if (isTouchDevice()) {
+            document.querySelectorAll('.btn').forEach(btn => {
+              btn.style.transition = 'none';
+            });
+          }
         }, 800);
       }, 3000);
     });
