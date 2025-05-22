@@ -378,7 +378,7 @@
       background: rgba(255, 255, 255, 0.25);
     }
     
-    /* Modal */
+    /* Modal - Atualizado para tela cheia responsiva */
     .modal {
       position: fixed;
       top: 0;
@@ -403,18 +403,37 @@
     
     .modal-content {
       position: relative;
-      max-width: 90%;
-      max-height: 90%;
+      width: 90vw;
+      height: 90vh;
+      max-width: 100%;
+      max-height: 100%;
       border-radius: 15px;
       overflow: hidden;
       animation: scaleUp 0.3s;
       border: 3px solid var(--primary);
       box-shadow: 0 0 40px rgba(0, 102, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.9);
+    }
+    
+    .image-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
     
     .modal-content img {
       max-width: 100%;
-      max-height: 80vh;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
       display: block;
     }
     
@@ -434,6 +453,7 @@
       cursor: pointer;
       transition: all 0.3s;
       border: none;
+      z-index: 101;
     }
     
     .close-btn:hover {
@@ -601,6 +621,17 @@
       .event-info {
         padding: 0.8rem;
       }
+      
+      /* Ajustes do modal para mobile */
+      .modal-content {
+        width: 95vw;
+        height: 95vh;
+        border-radius: 10px;
+      }
+      
+      .image-container {
+        padding: 10px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -624,11 +655,6 @@
       .btn {
         padding: 0.8rem 1rem;
         font-size: 0.9rem;
-      }
-      
-      .modal-content {
-        max-width: 95%;
-        max-height: 95%;
       }
     }
     
@@ -698,7 +724,7 @@
           <i class="fas fa-check-circle"></i> Confirmar Presença
         </button>
         <button class="btn btn-secondary" onclick="openModal()">
-          <i class="fas fa-expand"></i> Ver Imagem Especial<spam>🚀</spam>
+          <i class="fas fa-expand"></i> Ver Imagem Especial<span>🚀</span>
         </button>
       </div>
     </div>
@@ -718,11 +744,13 @@
       <p>🙏 Momento de <span class="highlight">oração</span> e encontro pessoal com Deus</p>
     </div>
     
-    <!-- Modal -->
+    <!-- Modal Atualizado -->
     <div class="modal" id="image-modal">
       <div class="modal-content">
         <button class="close-btn" onclick="closeModal()">&times;</button>
-        <img src="ESPECIAL.jpeg" alt="Momento Mariano em tela cheia">
+        <div class="image-container">
+          <img src="ESPECIAL.jpeg" alt="Momento Mariano em tela cheia">
+        </div>
       </div>
     </div>
     
@@ -828,10 +856,18 @@
       });
     }
     
-    // Modal functions
+    // Modal functions - Atualizadas
     function openModal() {
-      document.getElementById('image-modal').classList.add('active');
+      const modal = document.getElementById('image-modal');
+      modal.classList.add('active');
       document.body.style.overflow = 'hidden';
+      
+      // Força o redimensionamento da imagem
+      const img = modal.querySelector('img');
+      img.style.width = 'auto';
+      img.style.height = 'auto';
+      img.style.maxWidth = '100%';
+      img.style.maxHeight = '100%';
     }
     
     function closeModal() {
@@ -850,6 +886,16 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeModal();
+      }
+    });
+    
+    // Ajusta o modal quando a janela é redimensionada
+    window.addEventListener('resize', () => {
+      const modal = document.getElementById('image-modal');
+      if (modal.classList.contains('active')) {
+        const img = modal.querySelector('img');
+        img.style.width = 'auto';
+        img.style.height = 'auto';
       }
     });
     
