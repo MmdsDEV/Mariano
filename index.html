@@ -1,956 +1,240 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resgatados - Grupo de Jovens</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Convite Espacial Mariano</title>
   <style>
-       /* Loader de Foguete Espacial com Melhor Contraste */
-    .loader-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #0a0a20, #121235);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.8s ease;
-    }
-
-    .loader {
-      position: relative;
-      display: flex;
-      filter: drop-shadow(0 0 20px rgba(0, 150, 255, 0.5));
-    }
-
-    .loader span {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      background-color: transparent;
-      border: 4px solid rgba(0, 150, 255, 0.2);
-      border-radius: 50%;
-      box-shadow: 
-        -8px -8px 15px rgba(255, 255, 255, 0.05),
-        8px 8px 25px rgba(0, 0, 0, 0.4),
-        inset 0 0 30px rgba(0, 150, 255, 0.1);
-      overflow: hidden;
-    }
-
-    .loader span::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      box-shadow: 
-        inset 10px 10px 20px rgba(0, 0, 0, 0.6),
-        inset -5px -5px 15px rgba(255, 255, 255, 0.1);
-    }
-
-    .loader span::after {
-      content: "";
-      position: absolute;
-      inset: 30px;
-      background: transparent;
-      border: 2px solid rgba(0, 150, 255, 0.15);
-      border-radius: 50%;
-      box-shadow: 
-        -8px -8px 25px rgba(255, 255, 255, 0.05),
-        8px 8px 25px rgba(0, 0, 0, 0.3),
-        inset 3px 3px 10px rgba(0, 0, 0, 0.3),
-        inset -1px -1px 15px rgba(255, 255, 255, 0.1);
-    }
-
-    .loader span i {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: linear-gradient(#0066ff, #00ccff, #ffffff);
-      animation: animateLoader 1.5s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes animateLoader {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .rocket {
-      position: absolute;
-      inset: 40px;
-      z-index: 10;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .rocket .fa-rocket {
-      position: absolute;
-      color: #00ccff;
-      font-size: 3em;
-      text-shadow: 0 0 15px #00ccff;
-      animation: animateRocket 0.3s infinite ease-in-out;
-      transform: rotate(-45deg);
-      filter: brightness(1.2);
-    }
-
-    @keyframes animateRocket {
-      0%, 100% { transform: translate(0,0) rotate(-45deg); }
-      50% { transform: translate(0,5px) rotate(-45deg); }
-    }
-
-    .rocket .fa-cloud {
-      position: absolute;
-      top: calc(40px * var(--i));
-      left: calc(35px * var(--i));
-      font-size: 1.5em;
-      color: rgba(255, 255, 255, 0.9);
-      animation: animateCloud 2s linear infinite;
-      animation-delay: calc(-0.5s * var(--i));
-      filter: drop-shadow(0 0 8px rgba(0, 204, 255, 0.8));
-    }
-
-    @keyframes animateCloud {
-      0% { 
-        transform: translateY(calc(-40 * 3px)) scale(0.8);
-        opacity: 0;
-      }
-      50% { 
-        opacity: 1;
-      }
-      100% { 
-        transform: translateY(calc(40 * 3px)) scale(1.2);
-        opacity: 0;
-      }
-    }
-
-    .loading-text {
-      position: absolute;
-      bottom: 20%;
-      color: #00ccff;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      animation: pulseText 1.5s infinite alternate;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(0, 204, 255, 0.7);
-    }
-
-    @keyframes pulseText {
-      0% { opacity: 0.7; text-shadow: 0 0 8px #00ccff; }
-      100% { opacity: 1; text-shadow: 0 0 20px #00ccff; }
-    }
-
-    .stars {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(ellipse at center, transparent 70%, #0a0a20 100%),
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white"/></svg>') repeat;
-      background-size: 2px 2px;
-      animation: twinkle 3s infinite;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 0.9; }
-    }
-
-    /* Estilos do Conteúdo Principal com Melhor Contraste */
-    :root {
-      --primary: #0066ff;
-      --secondary: #00ccff;
-      --accent: #ff6600;
-      --dark: #0a0a20;
-      --darker: #070716;
-      --light: #ffffff;
-      --lighter: #f0f9ff;
-    }
-    
     body {
-      font-family: 'Space Mono', monospace;
-      background-color: var(--darker);
-      color: var(--lighter);
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
       min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
-      line-height: 1.6;
     }
-    
-    /* Efeito de partículas espaciais */
-    #space-particles {
+
+    .header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    .header h1 {
+      font-size: 3em;
+      margin: 0;
+      background: linear-gradient(225deg, #7FDBFF, #a18cd1, #fbc2eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header img {
+      margin-top: 10px;
+      max-height: 80px;
+      opacity: 0.75;
+      border-radius: 15px;
+    }
+
+    .info, .schedule {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .info h1, .schedule h1 {
+      font-size: 2em;
+      background: linear-gradient(225deg, #7FDBFF, #a18cd1, #fbc2eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .info p, .schedule p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    .circles {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
-      pointer-events: none;
-    }
-    
-    /* Astronauta flutuante - Melhorado */
-    .astronaut {
-      position: fixed;
-      width: 120px;
-      height: 120px;
-      z-index: 1;
-      pointer-events: none;
-      filter: drop-shadow(0 0 15px rgba(0, 150, 255, 0.7));
-      animation: float 15s infinite ease-in-out;
-      will-change: transform;
-    }
-    
-    @keyframes float {
-      0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-      20% {
-        transform: translate(20px, -10px) rotate(5deg);
-      }
-      40% {
-        transform: translate(-15px, 15px) rotate(-5deg);
-      }
-      60% {
-        transform: translate(25px, 5px) rotate(3deg);
-      }
-      80% {
-        transform: translate(-10px, -15px) rotate(-3deg);
-      }
-    }
-    
-    /* Container principal */
-    .main-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s, transform 0.8s;
-    }
-    
-    .content-loaded .main-container {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Cabeçalho */
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-      animation: fadeIn 1s ease-out;
-    }
-    
-    .header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      color: var(--secondary);
-      text-shadow: 0 0 20px rgba(0, 204, 255, 0.7);
-      margin-bottom: 0.5rem;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .header h1::after {
-      content: '🚀';
-      position: absolute;
-      right: -40px;
-      top: -10px;
-      font-size: 1.5rem;
-      animation: pulse 2s infinite;
-    }
-    
-    .header h2 {
-      font-size: 1.3rem;
-      color: var(--light);
-      opacity: 0.9;
-      font-weight: 400;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-    
-    /* Card de evento */
-    .event-card {
-      background: rgba(10, 10, 32, 0.85);
-      border-radius: 15px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(0, 150, 255, 0.4);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      animation: slideUp 0.8s ease-out;
-      transition: transform 0.3s;
-    }
-    
-    .event-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-    }
-    
-    .event-card h3 {
-      color: var(--secondary);
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .event-card p {
-      margin-bottom: 0.8rem;
-      line-height: 1.6;
-      color: var(--lighter);
-    }
-    
-    .event-card .highlight {
-      color: var(--accent);
-      font-weight: bold;
-    }
-    
-    .event-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin: 1rem 0;
-      padding: 1rem;
-      background: rgba(0, 150, 255, 0.15);
-      border-radius: 10px;
-      border-left: 3px solid var(--secondary);
-    }
-    
-    /* Botões */
-    .button-group {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    
-    .btn {
-      padding: 1rem 1.5rem;
-      border-radius: 50px;
-      border: none;
-      font-family: 'Space Mono', monospace;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      text-align: center;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), #0095ff);
-      color: white;
-      box-shadow: 0 5px 20px rgba(0, 102, 255, 0.5);
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 102, 255, 0.7);
-      background: linear-gradient(135deg, #0055cc, #0080ff);
-    }
-    
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.15);
-      color: var(--light);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.25);
-    }
-    
-    /* Modal - Atualizado para tela cheia responsiva */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-      touch-action: manipulation;
-    }
-    
-    .modal.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    
-    .modal-content {
-      position: relative;
-      width: 90vw;
-      height: 90vh;
-      max-width: 100%;
-      max-height: 100%;
-      border-radius: 15px;
       overflow: hidden;
-      animation: scaleUp 0.3s;
-      border: 3px solid var(--primary);
-      box-shadow: 0 0 40px rgba(0, 102, 255, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.9);
     }
-    
-    .image-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    
-    .modal-content img {
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-    }
-    
-    .close-btn {
+
+    .circles li {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
+      display: block;
+      list-style: none;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      animation: animate 25s linear infinite;
+      bottom: -150px;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+      opacity: 0.7;
+    }
+
+    @keyframes animate {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .circles li:nth-child(1) {
+      left: 25%;
       width: 40px;
       height: 40px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      border: none;
-      z-index: 101;
+      animation-delay: 0s;
     }
-    
-    .close-btn:hover {
-      background: var(--accent);
-      transform: rotate(90deg);
+    .circles li:nth-child(2) {
+      left: 10%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 2s;
+      animation-duration: 12s;
     }
-    
-    /* Versículos */
-    .verses-container {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+    .circles li:nth-child(3) {
+      left: 70%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 4s;
     }
-    
-    .verse-card {
-      background: rgba(0, 102, 255, 0.15);
-      padding: 1.5rem;
-      border-radius: 10px;
-      border: 1px solid rgba(0, 150, 255, 0.3);
-      transition: all 0.3s;
-      animation: fadeIn 1s ease-out;
+    .circles li:nth-child(4) {
+      left: 40%;
+      width: 60px;
+      height: 60px;
+      animation-delay: 0s;
+      animation-duration: 18s;
     }
-    
-    .verse-card:hover {
-      background: rgba(0, 102, 255, 0.25);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
+    .circles li:nth-child(5) {
+      left: 65%;
+      width: 20px;
+      height: 20px;
+      animation-delay: 0s;
     }
-    
-    .verse-card .verse {
-      font-size: 1.1rem;
-      color: var(--secondary);
-      margin-bottom: 0.5rem;
-      font-style: italic;
+    .circles li:nth-child(6) {
+      left: 75%;
+      width: 110px;
+      height: 110px;
+      animation-delay: 3s;
     }
-    
-    .verse-card .reference {
-      font-size: 0.9rem;
-      color: var(--light);
-      opacity: 0.8;
-      text-align: right;
+    .circles li:nth-child(7) {
+      left: 35%;
+      width: 150px;
+      height: 150px;
+      animation-delay: 7s;
     }
-    
-    /* Rodapé */
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      padding: 2rem 0;
-      color: var(--light);
-      font-size: 0.9rem;
+    .circles li:nth-child(8) {
+      left: 50%;
+      width: 25px;
+      height: 25px;
+      animation-delay: 15s;
+      animation-duration: 45s;
     }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1rem;
+    .circles li:nth-child(9) {
+      left: 20%;
+      width: 15px;
+      height: 15px;
+      animation-delay: 2s;
+      animation-duration: 35s;
     }
-    
-    .social-links a {
-      color: var(--light);
-      font-size: 1.3rem;
-      transition: all 0.3s;
-    }
-    
-    .social-links a:hover {
-      color: var(--secondary);
-      transform: translateY(-3px);
-    }
-    
-    /* Animações */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    @keyframes slideUp {
-      from { 
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to { 
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-    
-    @keyframes scaleUp {
-      from { transform: scale(0.9); }
-      to { transform: scale(1); }
-    }
-    
-    /* Responsivo Melhorado */
-    @media (max-width: 768px) {
-      .main-container {
-        padding: 1.5rem;
-      }
-      
-      .header h1 {
-        font-size: 2.2rem;
-      }
-      
-      .header h1::after {
-        right: -35px;
-        top: -8px;
-        font-size: 1.2rem;
-      }
-      
-      .header h2 {
-        font-size: 1.1rem;
-      }
-      
-      .astronaut {
-        width: 80px;
-        height: 80px;
-        animation: floatMobile 15s infinite ease-in-out;
-      }
-      
-      @keyframes floatMobile {
-        0%, 100% {
-          transform: translate(0, 0) rotate(0deg);
-        }
-        20% {
-          transform: translate(10px, -5px) rotate(3deg);
-        }
-        40% {
-          transform: translate(-8px, 8px) rotate(-3deg);
-        }
-        60% {
-          transform: translate(12px, 3px) rotate(2deg);
-        }
-        80% {
-          transform: translate(-5px, -8px) rotate(-2deg);
-        }
-      }
-      
-      .btn {
-        padding: 0.9rem 1.2rem;
-        font-size: 0.95rem;
-      }
-      
-      .loader span {
-        width: 160px;
-        height: 160px;
-      }
-      
-      .rocket {
-        inset: 35px;
-      }
-      
-      .rocket .fa-rocket {
-        font-size: 2.5em;
-      }
-      
-      .verse-card {
-        padding: 1.2rem;
-      }
-      
-      .event-info {
-        padding: 0.8rem;
-      }
-      
-      /* Ajustes do modal para mobile */
-      .modal-content {
-        width: 95vw;
-        height: 95vh;
-        border-radius: 10px;
-      }
-      
-      .image-container {
-        padding: 10px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .header h1 {
-        font-size: 1.8rem;
-      }
-      
-      .header h2 {
-        font-size: 1rem;
-      }
-      
-      .astronaut {
-        width: 60px;
-        height: 60px;
-      }
-      
-      .event-card h3 {
-        font-size: 1.3rem;
-      }
-      
-      .btn {
-        padding: 0.8rem 1rem;
-        font-size: 0.9rem;
-      }
-    }
-    
-    /* Melhorias para touch devices */
-    @media (hover: none) {
-      .btn:hover {
-        transform: none;
-      }
-      
-      .event-card:hover {
-        transform: none;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      }
-      
-      .verse-card:hover {
-        transform: none;
-        background: rgba(0, 102, 255, 0.15);
-        box-shadow: none;
-      }
+    .circles li:nth-child(10) {
+      left: 85%;
+      width: 150px;
+      height: 150px;
+      animation-delay: 0s;
+      animation-duration: 11s;
     }
   </style>
 </head>
 <body>
-  <!-- Loader de Entrada -->
-  <div class="loader-container" id="loader">
-    <div class="stars"></div>
-    <div class="loader">
-      <div class="rocket">
-        <i class="fas fa-rocket"></i>
-        <i class="fas fa-cloud" style="--i:0"></i>
-        <i class="fas fa-cloud" style="--i:1"></i>
-        <i class="fas fa-cloud" style="--i:2"></i>
-        <i class="fas fa-cloud" style="--i:3"></i>
-      </div>
-      <span>
-        <i></i>
-      </span>
-    </div>
-    <div class="loading-text">CARREGANDO...</div>
+
+  <div class="header">
+    <h1>Movimento Jovem</h1>
+    <img src="img1.jpeg" alt="Nossa Senhora"/>
   </div>
 
-  <!-- Partículas espaciais -->
-  <canvas id="space-particles"></canvas>
-  
-  <!-- Astronauta -->
-  <img src="ASTRO.png" class="astronaut" alt="Astronauta">
-  
-  <!-- Conteúdo principal -->
-  <div class="main-container">
-    <header class="header">
-      <h1>RESGATADOS</h1>
-      <h2>"Nos gloriamos até das tribulações" - Romanos 5,1-5</h2>
-    </header>
-    
-    <div class="event-card">
-      <h3><i class="fas fa-calendar-alt"></i> Encontro de Jovens</h3>
-      <p>📅 <strong>Quinta-feira, 22/05 às 20h00</strong></p>
-      <p>📍 <strong>Tema: Romanos 5,1-5 - RESGATADOS PELA FÉ</strong></p>
-      
-      <div class="event-info">
-        <p>Venha viver uma experiência <span class="highlight">transformadora</span> com Deus e outros jovens!</p>
-        <p>Descubra como até nas tribulações podemos encontrar motivos para glorificar a Deus! ✝️</p>
-      </div>
-    </div>
-    
-    <div class="event-card">
-      <h3><i class="fas fa-info-circle"></i> Informações</h3>
-      <div class="event-info">
-        <p><i class="fas fa-map-marker-alt"></i> <strong>Local:</strong> Comunidade Nossa Senhora Aparecida</p>
-        <p><i class="fas fa-location-arrow"></i> Avenida C, 212 - Setor Água Branca</p>
-        <p><i class="fas fa-clock"></i> <strong>Toda quinta-feira às 20h00</strong></p>
-      </div>
-      
-      <p>"E não somente isto, mas também nos gloriamos nas tribulações; sabendo que a tribulação produz a paciência, e a paciência a experiência, e a experiência a esperança." (Romanos 5:3-4)</p>
-      
-      <p>🎤 <span class="highlight">Pregador:</span> João Marcus</p>
-      <p>🎵 <span class="highlight">Louvores</span> que elevam o espírito</p>
-      <p>🙏 Momento de <span class="highlight">oração</span> e fortalecimento na fé</p>
-      
-      <div class="button-group">
-        <button class="btn btn-primary" onclick="confirmPresence()">
-          <i class="fas fa-check-circle"></i> Confirmar Presença
-        </button>
-      </div>
-    </div>
-    
-    <!-- Modal -->
-    <div class="modal" id="image-modal">
-      <div class="modal-content">
-        <button class="close-btn" onclick="closeModal()">&times;</button>
-        <div class="image-container">
-          <!-- Conteúdo do modal -->
-        </div>
-      </div>
-    </div>
-    
-    <div class="verses-container">
-      <div class="verse-card">
-        <div class="verse">"Justificados, pois, pela fé, temos paz com Deus, por nosso Senhor Jesus Cristo;"</div>
-        <div class="reference">Romanos 5:1</div>
-      </div>
-      <div class="verse-card">
-        <div class="verse">"Por quem também temos entrada pela fé a esta graça, na qual estamos firmes, e nos gloriamos na esperança da glória de Deus."</div>
-        <div class="reference">Romanos 5:2</div>
-      </div>
-      <div class="verse-card">
-        <div class="verse">"E a esperança não traz confusão, porquanto o amor de Deus está derramado em nossos corações pelo Espírito Santo que nos foi dado."</div>
-        <div class="reference">Romanos 5:5</div>
-      </div>
-    </div>
-    
-    <footer>
-      <p>Siga-nos nas redes sociais:</p>
-      <div class="social-links">
-        <a href="https://www.instagram.com/movimentojovem._?igsh=OWpqdjFzYW1xejcw" target="_blank">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-      <p style="margin-top: 1.5rem; color: var(--secondary);">@movimentojovem</p>
-    </footer>
+  <div class="info">
+    <h1>Informações do Evento</h1>
+    <p>Data: 15 de agosto</p>
+    <p>Horário: 19h</p>
+    <p>Local: Igreja Matriz</p>
   </div>
-  
-  <!-- [Todo o JavaScript anterior permanece exatamente igual] -->
+
+  <div class="schedule">
+    <h1>Programação</h1>
+    <p>19h - Missa</p>
+    <p>20h - Adoração</p>
+    <p>21h - Confraternização</p>
+  </div>
+
+  <ul class="circles">
+    <li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li>
+  </ul>
+
+
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-      <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-  <script>
-    // Inicializa as partículas espaciais
-    function initParticles() {
-      const canvas = document.getElementById('space-particles');
-      const ctx = canvas.getContext('2d');
-      
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      
-      const particles = [];
-      const particleCount = Math.floor(window.innerWidth / 3);
-      
-      // Cria partículas
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 1,
-          speed: Math.random() * 0.2 + 0.1,
-          opacity: Math.random() * 0.5 + 0.2
-        });
-      }
-      
-      // Anima as partículas
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = 'white';
-        particles.forEach(particle => {
-          ctx.globalAlpha = particle.opacity;
-          ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-          ctx.fill();
-          
-          // Move as partículas
-          particle.y += particle.speed;
-          
-          // Reinicia partículas que saíram da tela
-          if (particle.y > canvas.height) {
-            particle.y = 0;
-            particle.x = Math.random() * canvas.width;
-          }
-        });
-        
-        requestAnimationFrame(animate);
-      }
-      
-      animate();
-      
-      // Redimensiona o canvas quando a janela muda de tamanho
-      window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      });
+    function confirmarPresenca() {
+      document.getElementById("overlay").classList.remove("hidden");
     }
-    
-    // Movimenta o astronauta aleatoriamente pela tela
-    function moveAstronaut() {
-      const astronaut = document.querySelector('.astronaut');
-      const duration = 15000; // 15 segundos
-      const viewportWidth = window.innerWidth - astronaut.offsetWidth;
-      const viewportHeight = window.innerHeight - astronaut.offsetHeight;
-      
-      function animate() {
-        // Posição aleatória dentro da viewport
-        const randomX = Math.random() * viewportWidth;
-        const randomY = Math.random() * viewportHeight;
-        
-        astronaut.style.transition = `all ${duration/1000}s ease-in-out`;
-        astronaut.style.left = `${randomX}px`;
-        astronaut.style.top = `${randomY}px`;
-      }
-      
-      // Inicia a animação
-      animate();
-      
-      // Continua movendo a cada intervalo
-      setInterval(animate, duration);
-      
-      // Reposiciona quando a janela é redimensionada
-      window.addEventListener('resize', () => {
-        const currentLeft = parseInt(astronaut.style.left) || 0;
-        const currentTop = parseInt(astronaut.style.top) || 0;
-        
-        // Ajusta para não sair da tela
-        astronaut.style.left = `${Math.min(currentLeft, viewportWidth)}px`;
-        astronaut.style.top = `${Math.min(currentTop, viewportHeight)}px`;
-      });
+
+    function fecharConfirmacao() {
+      document.getElementById("overlay").classList.add("hidden");
     }
-    
-    // Modal functions - Atualizadas
-    function openModal() {
-      const modal = document.getElementById('image-modal');
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      
-      // Força o redimensionamento da imagem
-      const img = modal.querySelector('img');
-      img.style.width = 'auto';
-      img.style.height = 'auto';
-      img.style.maxWidth = '100%';
-      img.style.maxHeight = '100%';
-    }
-    
-    function closeModal() {
-      document.getElementById('image-modal').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-    
-    // Fecha o modal ao clicar fora
-    document.getElementById('image-modal').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('image-modal')) {
-        closeModal();
-      }
+
+    // Inicializar Swiper com configurações corretas
+    const swiper = new Swiper('.swiper', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 20,
+        stretch: 0,
+        depth: 300,
+        modifier: 1,
+        slideShadows: true,
+      },
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
     });
     
-    // Fecha o modal com ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeModal();
+    // Ajustar altura do carrossel em dispositivos móveis
+    function adjustSwiperHeight() {
+      const swiperEl = document.querySelector('.swiper');
+      if (window.innerWidth <= 700) {
+        swiperEl.style.height = '400px';
+      } else if (window.innerWidth <= 500) {
+        swiperEl.style.height = '350px';
+      } else {
+        swiperEl.style.height = '550px';
       }
-    });
-    
-    // Ajusta o modal quando a janela é redimensionada
-    window.addEventListener('resize', () => {
-      const modal = document.getElementById('image-modal');
-      if (modal.classList.contains('active')) {
-        const img = modal.querySelector('img');
-        img.style.width = 'auto';
-        img.style.height = 'auto';
-      }
-    });
-    
-    // Confirmação de presença
-    function confirmPresence() {
-      alert('Presença confirmada! 🎉\n\nTe esperamos na quinta-feira às 20h na Comunidade Nossa Senhora Aparecida!');
     }
     
-    // Detecta se é um dispositivo touch
-    function isTouchDevice() {
-      return 'ontouchstart' in window || navigator.maxTouchPoints;
-    }
-    
-    // Inicializa tudo quando a página carrega
-    window.addEventListener('load', () => {
-      // Mostra o loader por 3 segundos
-      setTimeout(() => {
-        document.getElementById('loader').style.opacity = '0';
-        
-        setTimeout(() => {
-          document.getElementById('loader').style.display = 'none';
-          document.body.classList.add('content-loaded');
-          
-          // Inicializa os outros elementos
-          initParticles();
-          moveAstronaut();
-          
-          // Anima os elementos sequencialmente
-          document.querySelectorAll('.event-card, .verse-card').forEach((el, i) => {
-            el.style.animationDelay = `${i * 0.2}s`;
-          });
-          
-          // Ajustes para dispositivos touch
-          if (isTouchDevice()) {
-            document.querySelectorAll('.btn').forEach(btn => {
-              btn.style.transition = 'none';
-            });
-          }
-        }, 800);
-      }, 3000);
-    });
+    // Executar na carga e redimensionamento
+    window.addEventListener('load', adjustSwiperHeight);
+    window.addEventListener('resize', adjustSwiperHeight);
   </script>
 </body>
 </html>
